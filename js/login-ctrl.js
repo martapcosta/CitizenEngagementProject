@@ -17,6 +17,5 @@ angular.module('app').controller('LoginCtrl', function LoginCtrl(AuthService, $h
       login.error = "Error while trying to log you in";
       $log.error(error);
     })
-
   }
 });
