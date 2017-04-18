@@ -1,1 +1,115 @@
-<h1>Main page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Citizen Engagement</title>
+
+  <!-- Add here the link to Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style type="text/css">
+    main { margin-top: 70px; }
+  </style>
+
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+    <!--<div ng-controller="MapCtrl as map">
+       <leaflet width="100%" height="480px" defaults="map.defaults" lf-center="map.center">
+       </leaflet>
+     </div>-->
+     <a href="#" class="navbar-brand">Home</a>
+     <div class="collpase navbar-collapse navbar-right">
+      <ul class="nav navbar-nav">
+        <li><a href="#">How to</a></li>
+        <li><a href="#">Report</a></li>
+        <li><a href="#">All Reports</a></li>
+      </ul>
+      <a class="btn btn-success navbar-btn">Log out</a>
+    </div>
+  </div>
+</nav>
+<main class="container">
+  <div class="col-md-6 col-md-offset-3">     
+    <div class="row">
+      <div id="logo" class="text-center">
+        <h1>Last Issues</h1>
+      </div>
+      <form role="form" id="form-buscar">
+        <div class="form-group">
+          <div class="input-group">
+            <input id="1" class="form-control" type="text" name="search" placeholder="Search..." required/>
+            <span class="input-group-btn">
+              <button class="btn btn-success">
+                <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Search
+              </button>
+            </span>
+          </div>
+        </div>
+      </form>
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h3 class="mb-1">List group item heading</h3>
+            <small>3 days ago</small>
+          </div>
+          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h3 class="mb-1">List group item heading</h3>
+            <small>3 days ago</small>
+          </div>
+          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h3 class="mb-1">List group item heading</h3>
+            <small>3 days ago</small>
+          </div>
+          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h3 class="mb-1">List group item heading</h3>
+            <small>3 days ago</small>
+          </div>
+          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h3 class="mb-1">List group item heading</h3>
+            <small class="text-muted">3 days ago</small>
+          </div>
+          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h3 class="mb-1">List group item heading</h3>
+            <small class="text-muted">3 days ago</small>
+          </div>
+          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+        </a>
+      </div>
+    </div>
+  </div>           
+</main>
+<footer class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+    <button class="btn btn-default navbar-btn">Privacy &amp; Terms</button>
+    <div class="navbar-right">
+      <p class="navbar-text">&copy; 2017 - Marta Costa &amp; Rute Pereira</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

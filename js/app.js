@@ -1,6 +1,7 @@
 angular.module('app', [
     'ui.router',
-    'angular-storage'
+    'angular-storage',
+    //'leaflet-directive'
 ]);
 
 angular.module('app').config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
