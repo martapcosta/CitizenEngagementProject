@@ -34,32 +34,31 @@
       </ul>
       <div class="collpase navbar-collapse navbar-right">
         <ul class="nav navbar-nav">
-          <li><a href="#" class="glyphicon glyphicon-map-marker"></a></li> 
+          <li><a href="#" title="Go to map" class="glyphicon glyphicon-map-marker"></a></li> 
           <li><a href="#">How to</a></li>
           <li><a href="#">New Issue</a></li>
           <li><a href="#">All Issues</a></li>
         </ul>
-        <a class="btn btn-success navbar-btn">Log out</a>
+         <button class="btn btn-success navbar-btn" ng-controller="LogoutCtrl as logout" ng-click="logout.disconnect()"> Log out</button>
       </div>
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
 </nav>
 <main class="container">
     <!-- leaflet map -->
-    <div class="map-container" ng-controller="MapCtrl as map">
+    <!--<div class="map-container" ng-controller="MapCtrl as map">
        <leaflet width="100%" height="480px" 
        lf-center="map.center"
        defaults="map.defaults"
        markers="map.markers">
-       <!--not on this map but later we will need this
-       <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button>-->  
+       not on this map but later we will need this
+       <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button> 
        </leaflet>
-     </div>
+     </div>--> 
     <!-- end of leaflet map -->
   <div class="col-md-6 col-md-offset-3">
-
     <div class="row">
-      <div class="text-center">
+      <div class="page-header text-center">
         <h1>Last Issues</h1>
       </div>
       <form role="form" id="form-buscar">
@@ -74,55 +73,17 @@
           </div>
         </div>
       </form>
-      <div class="list-group">
+      <div ng-controller="ListPanelController as listPanelCtrl" class="list-group">
+        <div ng-repeat="description in listPanelCtrl.descriptions | orderBy: '-time' | limitTo: 10">
         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
           <div class="d-flex w-100 justify-content-between">
-            <h3 class="mb-1">List group item heading</h3>
-            <small>3 days ago</small>
+            <h3 class="mb-1">{{description.title}}</h3>
+            <small>{{description.time | date: 'HH:MM'}}</small>
           </div>
-          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+          <p class="mb-1">{{description.text}}</p>
+          <span><i class="glyphicon glyphicon-comment"> </i> {{description.ncomments}}</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="d-flex w-100 justify-content-between">
-            <h3 class="mb-1">List group item heading</h3>
-            <small>3 days ago</small>
-          </div>
-          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="d-flex w-100 justify-content-between">
-            <h3 class="mb-1">List group item heading</h3>
-            <small>3 days ago</small>
-          </div>
-          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="d-flex w-100 justify-content-between">
-            <h3 class="mb-1">List group item heading</h3>
-            <small>3 days ago</small>
-          </div>
-          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="d-flex w-100 justify-content-between">
-            <h3 class="mb-1">List group item heading</h3>
-            <small class="text-muted">3 days ago</small>
-          </div>
-          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="d-flex w-100 justify-content-between">
-            <h3 class="mb-1">List group item heading</h3>
-            <small class="text-muted">3 days ago</small>
-          </div>
-          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-        </a>
+        </div>
       </div>
     </div>
   </div>           
