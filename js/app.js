@@ -1,9 +1,16 @@
+/**
+ * Main angular module with all the dependencies
+ */
 angular.module('app', [
     'ui.router',
     'angular-storage',
-    //'leaflet-directive'
+    'ngGeolocation',
+    'leaflet-directive'
 ]);
 
+/**
+ * Config function with the navigation states
+ */
 angular.module('app').config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $stateProvider.state('login', {
         url: '/login',
