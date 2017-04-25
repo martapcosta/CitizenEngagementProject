@@ -1,1 +1,14 @@
 main {padding: 60px;}
+.callout-light {
+    padding: 30px;
+	color: #000;
+	background-color: #ccc;
+}
+
+.callout-light h1,
+h2,
+h3,
+h4 {
+	font-weight: 300;
+	line-height: 1.4;
+}
