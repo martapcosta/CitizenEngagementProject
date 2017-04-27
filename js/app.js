@@ -1,17 +1,17 @@
 /**
  * Main angular module with all the dependencies
  */
-angular.module('app', [
+ angular.module('app', [
     'ui.router',
     'angular-storage',
     'ngGeolocation',
     'leaflet-directive'
-]);
+    ]);
 
 /**
  * Issues list controller
  */
-angular.module('app').controller('ListPanelController', function(DataService) {
+ angular.module('app').controller('ListPanelController', function(DataService) {
 
     var listPanelCtrl = this;
 
@@ -23,7 +23,7 @@ angular.module('app').controller('ListPanelController', function(DataService) {
 
 });
 
-angular.module('app').factory('DataService', function($q) {
+ angular.module('app').factory('DataService', function($q) {
 
     var service = {};
 
@@ -54,11 +54,10 @@ angular.module('app').factory('DataService', function($q) {
 });
 
 
-
 /**
  * Config function with the navigation states
  */
-angular.module('app').config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $stateProvider.state('login', {
         url: '/login',
         templateUrl: './templates/login.html',
@@ -70,9 +69,19 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $http
         templateUrl: './templates/main.html'
     });
 
-    $stateProvider.state('second', {
-        url: '/second',
-        templateUrl: './templates/second.html'
+    $stateProvider.state('about', {
+        url: '/about',
+        templateUrl: './templates/about.html'
+    });
+
+    $stateProvider.state('about.contact', {
+      url: "/contact",
+      templateUrl: "./templates/contact.html",
+    });
+
+    $stateProvider.state('register', {
+      url: "/register",
+      templateUrl: "./templates/register.html",
     });
 
     $urlRouterProvider.otherwise(function ($injector) {
@@ -82,7 +91,7 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $http
     $httpProvider.interceptors.push('AuthInterceptor');
 })
 
-angular.module('app').run(function (AuthService, $rootScope, $state) {
+ angular.module('app').run(function (AuthService, $rootScope, $state) {
     $rootScope.$on('$stateChangeStart', function (event, toState) {
         if (!AuthService.token && toState.name !== 'login') {
             event.preventDefault();
