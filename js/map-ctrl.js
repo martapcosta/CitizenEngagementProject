@@ -13,9 +13,9 @@
 	};
 
 	map.defaults = {
-  		doubleClickZoom: false, // disable the double-click zoom
-  		scrollWheelZoom: false, // disable zooming with the scroll
-  		dragging: false, // disable moving the map with dragging it with the mouse
+  		doubleClickZoom: true, // disable the double-click zoom
+  		scrollWheelZoom: true, // disable zooming with the scroll
+  		dragging: true, // disable moving the map with dragging it with the mouse
   		minZoom: 10, // Limit the minimal zoom
   		maxZoom: 16, // Limit the maximal zoom
 	};
