@@ -93,7 +93,7 @@
 
  angular.module('app').run(function (AuthService, $rootScope, $state) {
     $rootScope.$on('$stateChangeStart', function (event, toState) {
-        if (!AuthService.token && toState.name !== 'login') {
+        if (!AuthService.token && toState.name !== 'login' && toState.name !== 'register') {
             event.preventDefault();
             $state.go('login');
         }
