@@ -1,17 +1,18 @@
 ﻿angular.module('app').controller('RegisterCtrl', function RegisterCtrl($http, $log, $state) {
   var register = this;
-
   register.user = {};
+  // role has citizen by default
   register.user.roles = ["citizen"];
   register.createUser = function() {
+    delete register.error;
     $http({
       method: 'POST',
-      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/users', //https://citizen-api.herokuapp.com/api/auth',
+      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/users',
       data: register.user
     }).then(function(res) {
       $state.go('login');
     }).catch(function(error) {
-      login.error = "Error while trying to log you in";
+      register.error = "Error while trying to register you";
       $log.error(error);
     })
   }
