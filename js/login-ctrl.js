@@ -9,7 +9,9 @@ angular.module('app').controller('LoginCtrl', function LoginCtrl(AuthService, $h
     $http({
       method: 'POST',
       url: 'https://masrad-dfa-2017-g.herokuapp.com/api/auth', //https://citizen-api.herokuapp.com/api/auth',
-      data: login.user
+      //data: login.user
+      data: { "name": "jdoe", 
+      "password":"test"}
     }).then(function(res) {
       AuthService.setToken(res.data.token);
       $state.go('home');
