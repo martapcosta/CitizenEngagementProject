@@ -63,6 +63,10 @@
         templateUrl: './templates/login.html',
         controller: 'LoginCtrl as login'
     });
+    $stateProvider.state('welcome', {
+        url: '/welcome',
+        templateUrl: './templates/welcome.html',
+    });
 
     $stateProvider.state('home', {
         url: '',
@@ -72,6 +76,11 @@
     $stateProvider.state('about', {
         url: '/about',
         templateUrl: './templates/about.html'
+    });
+
+     $stateProvider.state('newissue', {
+        url: '/newissue',
+        templateUrl: './templates/newissue.html'
     });
 
     $stateProvider.state('about.contact', {
@@ -93,9 +102,9 @@
 
  angular.module('app').run(function (AuthService, $rootScope, $state) {
     $rootScope.$on('$stateChangeStart', function (event, toState) {
-        if (!AuthService.token && toState.name !== 'login' && toState.name !== 'register') {
+        if (!AuthService.token && toState.name !== 'login' && toState.name !== 'register' && toState.name !== 'welcome') {
             event.preventDefault();
-            $state.go('login');
+            $state.go('welcome');
         }
     });
 });
