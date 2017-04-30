@@ -1,29 +1,18 @@
-﻿(function () {
-    'use strict';
+﻿angular.module('app').controller('RegisterCtrl', function RegisterCtrl(AuthService, $http, $log, $state) {
+  var register = this;
 
-    angular
-        .module('app')
-        .controller('RegisterCtrl', RegisterCtrl);
-
-    RegisterCtrl.$inject = ['UserService', '$location', '$rootScope', 'FlashService'];
-    function RegisterCtrl(UserService, $location, $rootScope, FlashService) {
-        var vm = this;
-
-        vm.register = register;
-
-        function register() {
-            vm.dataLoading = true;
-            UserService.Create(vm.user)
-                .then(function (response) {
-                    if (response.success) {
-                        FlashService.Success('Registration successful', true);
-                        $location.path('/login');
-                    } else {
-                        FlashService.Error(response.message);
-                        vm.dataLoading = false;
-                    }
-                });
-        }
-    }
-
-})();
+  register.user = {};
+  register.user.roles = ["citizen"];
+  register.createUser = function() {
+    $http({
+      method: 'POST',
+      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/users', //https://citizen-api.herokuapp.com/api/auth',
+      data: register.user
+    }).then(function(res) {
+      $state.go('login');
+    }).catch(function(error) {
+      login.error = "Error while trying to log you in";
+      $log.error(error);
+    })
+  }
+});

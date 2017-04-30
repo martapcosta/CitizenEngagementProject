@@ -91,6 +91,7 @@
     $stateProvider.state('register', {
       url: "/register",
       templateUrl: "./templates/register.html",
+      controller: 'RegisterCtrl as register'
     });
 
     $urlRouterProvider.otherwise(function ($injector) {
