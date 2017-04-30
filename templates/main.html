@@ -7,32 +7,27 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Citizen Engagement</title>
 
-  <!-- Add here the link to Bootstrap -->
-  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <style type="text/css">
-    main { margin-top: 70px; }
-  </style>-->
-
 </head>
 <body>
 <main class="container">
-    <!-- leaflet map -->
-    <!--<div class="map-container" ng-controller="MapCtrl as map">
-       <leaflet width="100%" height="480px" 
-       lf-center="map.center"
-       defaults="map.defaults"
-       markers="map.markers">
-       not on this map but later we will need this
-       <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button> 
-       </leaflet>
-     </div>--> 
-    <!-- end of leaflet map -->
+
   <div class="col-md-6 col-md-offset-3">
     <div class="row">
       <div class="page-header text-center callout-light fade-in-b"">
-        <h1 id="lastIssues">Last Issues</h1>
-        <p> Report, view and discuss problems in the city of Yverdon-les-Bains</p>
+        <h1 id="lastIssues">Last Reported Issues</h1>
       </div>
+          <!--<h1>Welcome to {{ homePageCtrl.name }}</h1>-->
+        <!-- leaflet map -->
+    <div class="map-container" ng-controller="MapCtrl as map">
+       <leaflet width="100%" height="200px" 
+       lf-center="map.center"
+       defaults="map.defaults"
+       markers="map.markers">
+       <!--not on this map but later we will need this
+       <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button>--> 
+       </leaflet>
+     </div> 
+    <!-- end of leaflet map -->
       <form role="form" id="form-buscar">
         <div class="form-group">
           <div class="input-group">

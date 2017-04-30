@@ -22,7 +22,7 @@
               <div class="alert alert-danger" ng-if="login.error">
                 {{login.error}}
               </div>
-              <button ng-disabled="loginForm.$invalid" ng-click="login.connect()" class="btn btn-success btn-block">Login</button>
+              <button ng-disabled="loginForm.$invalid" ng-click="login.connect()" class="btn btn-danger btn-block">Login</button>
             </form>
           </div>
         </div>
@@ -34,7 +34,7 @@
             <li><span class="fa fa-check text-success"></span> Search issues</li>
             <li><span class="fa fa-check text-success"></span> Post comments on issues</li>
           </ul>
-          <p><a ui-sref="register" class="btn btn-info btn-block">Yes please, register now!</a></p>
+          <p><a ui-sref="register" class="btn btn-success btn-block">Yes please, register now!</a></p>
         </div>
       </div>
     </div>

@@ -70,22 +70,12 @@
 
     $stateProvider.state('home', {
         url: '',
-        templateUrl: './templates/main.html'
-    });
-
-    $stateProvider.state('about', {
-        url: '/about',
-        templateUrl: './templates/about.html'
+        templateUrl: './templates/main.html',
     });
 
      $stateProvider.state('newissue', {
         url: '/newissue',
         templateUrl: './templates/newissue.html'
-    });
-
-    $stateProvider.state('about.contact', {
-      url: "/contact",
-      templateUrl: "./templates/contact.html",
     });
 
     $stateProvider.state('register', {
