@@ -8,51 +8,6 @@
     'leaflet-directive'
     ]);
 
-/**
- * Issues list controller
- */
- angular.module('app').controller('ListPanelController', function(DataService) {
-
-    var listPanelCtrl = this;
-
-    //listPanelCtrl.user = "Ken Bogard";
-
-    DataService.getIssues().then(function(descriptions) {
-        listPanelCtrl.descriptions = descriptions;
-    });
-
-});
-
- angular.module('app').factory('DataService', function($q) {
-
-    var service = {};
-
-    service.getIssues = function() {
-        return $q.when([
-        {
-            title: 'Head 1',
-            text: 'Problem 1 blabla',
-            time: moment().hour(12).minute(40).toDate(),
-            ncomments: 2
-        },
-        {
-            title: 'Head 2',
-            text: 'Problem 2 blablaHey\nWhat\'s up?',
-            time: moment().hour(12).minute(50).toDate(),
-            ncomments: 23
-        },
-        {
-            title: 'Headsss 3',
-            text: 'Problem 3 Same old, same old.\nWanna come\'n play some SFV?!',
-            time: moment().year(2017).day(25).month(4).hour(14).minute(50).toDate(),
-            ncomments: 44
-        }
-        ]);
-    };
-
-    return service;
-});
-
 
 /**
  * Config function with the navigation states
@@ -71,6 +26,15 @@
     $stateProvider.state('home', {
         url: '',
         templateUrl: './templates/main.html',
+        controller: 'HomePageController',
+        controllerAs: 'homePageCtrl'
+    });
+
+    $stateProvider.state('issues', {
+    url: '/issues',
+    templateUrl: '/templates/issues.html',
+    controller: 'HomePageController',
+    controllerAs: 'homePageCtrl'
     });
 
      $stateProvider.state('newissue', {
@@ -83,6 +47,8 @@
       templateUrl: "./templates/register.html",
       controller: 'RegisterCtrl as register'
     });
+
+
 
     $urlRouterProvider.otherwise(function ($injector) {
         $injector.get('$state').go('home');

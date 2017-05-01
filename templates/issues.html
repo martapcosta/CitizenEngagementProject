@@ -1,0 +1,31 @@
+<div class="row">
+<div class="page-header text-center callout-light fade-in-b"">
+    <h1 id="lastIssues">All Issues</h1>
+  </div>
+  <div class="container">
+  <section class="col-md-4">
+  <div ng-controller="HomePageController as homePageCtrl" class="list-group">
+    <div ng-repeat="issue in homePageCtrl.issues | orderBy: '-time' | limitTo: 10">
+      <a class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h3 class="mb-1">{{issue.title}}</h3>
+          <small>{{issue.time | date: 'HH:MM'}}</small>
+        </div>
+        <p class="mb-1">{{issue.text}}</p>
+        <span><i class="glyphicon glyphicon-comment"> </i> {{issue.ncomments}}</span>
+      </a>
+    </div>
+  </div>
+</section>
+<section class="col-md-8">
+  <div class="map-container" ng-controller="MapCtrl as map">
+  <leaflet width="100%" height="500px"
+    lf-center="map.center"
+    defaults="map.defaults"
+    markers="map.markers">
+    <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button>
+  </leaflet>
+  </div>
+</div> 
+</section>
+</div>
