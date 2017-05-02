@@ -5,7 +5,8 @@
     'ui.router',
     'angular-storage',
     'ngGeolocation',
-    'leaflet-directive'
+    'leaflet-directive',
+    'ngTagsInput'
     ]);
 
 

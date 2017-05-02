@@ -1,17 +1,29 @@
 /**
  * Angular Controller for handling the map on the page
  */
- angular.module("app").controller("MapCtrl", function($scope){
+ angular.module("app").controller("MapCtrl", function($scope, $geolocation){
  	var map = this;
 
-	//Defines the default center of the map and the zoom level
-	map.center = {
-  		// These are the coordinates for the center of Yverdon-les-Bains
-  		lat: 46.778474,
-  		lng: 6.641183,
-  		zoom: 15
-	};
+  //Defines the default center of the map and the zoom level
+  map.center = {
+      // These are the coordinates for the center of Yverdon-les-Bains
+      lat: 46.778474,
+      lng: 6.641183,
+      zoom: 15
+  };
 
+  $geolocation.getCurrentPosition()
+    .then(function (position) {
+        // This will be executed when the location is accessed
+        map.center = {
+            // These are the coordinates for the center of Yverdon-les-Bains
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+            zoom: 15
+        };
+    })
+
+    $geolocation.watchPosition();
 	map.defaults = {
   		doubleClickZoom: true, // disable the double-click zoom
   		scrollWheelZoom: true, // disable zooming with the scroll
@@ -31,6 +43,19 @@
 	    shadowSize: [41, 41]
   	};
 
+    map.draggableMarker = [
+  		{
+  		lat: map.center.lat,
+  		lng: map.center.lng,
+  		icon: defaultIcon,
+  		draggable: true,
+      label: {
+        message: "Hey, drag me if you want",
+        options: {
+          noHide: true
+        }
+      }
+  		}];
 	// Defines the markers that will be added to the map.
   	// Add any marker object to this array for it to appear on the map
   	map.markers = [

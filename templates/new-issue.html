@@ -2,12 +2,12 @@
 <main class="container">
   <!-- leaflet map -->
   <div class="map-container" ng-controller="MapCtrl as map">
-   <leaflet width="100%" height="480px" 
+   <leaflet width="100%" height="480px"
    lf-center="map.center"
    defaults="map.defaults"
-   markers="map.markers">
+   markers="map.draggableMarker">
    not on this map but later we will need this
-   <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button> 
+   <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button>
  </leaflet>
 </div>
 <!-- end of leaflet map -->
@@ -15,10 +15,10 @@
   <div class='row'>
     <div class='col-md-8'></div>
     <div class='col-md-8'>
-      <form>
+      <form name="form" ng-submit="newIssue.createNewIssue()" role="form">
         <div class='form-row'>
           <label class='control-label'>Select Type</label>
-          <select class="form-control">
+          <select class="form-control" ng-model="newIssue.issue.issueTypeHref" required>
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -27,11 +27,11 @@
           </select>
         </div>
         <div class="form-row">
-          <textarea class="col-xs-12 col-md-8 form-group required form-control" rows="3">Please give more details about the issue</textarea>
+          <textarea class="col-xs-12 col-md-8 form-group required form-control" rows="3" ng-model="newIssue.issue.description" required>Please give more details about the issue</textarea>
         </div>
         <div class="form-row text-center">
-          <input class='col-xs-12 col-md-8 form-group' value="Tag this issue" class="form-control" rows="1"></input>
-          <button class='col-xs-12 col-md-8 form-group'type="submit" class="btn">Add tag</button>
+          <tags-input ng-model="newIssue.issue.tags"></tags-input>
+        </div>
         </form>
         <button class='col-xs-12 col-md-8 form-group'type="submit" class="btn">Save this issue </button>
       </div>
