@@ -1,16 +1,4 @@
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="#">Navbar</a>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+
 <main class="container">
   <!-- leaflet map -->
   <div class="map-container" ng-controller="MapCtrl as map">
@@ -25,8 +13,8 @@
 <!-- end of leaflet map -->
 <div class="container">
   <div class='row'>
-    <div class='col-md-12'></div>
-    <div class='col-md-12'>
+    <div class='col-md-8'></div>
+    <div class='col-md-8'>
       <form>
         <div class='form-row'>
           <label class='control-label'>Select Type</label>
@@ -39,12 +27,12 @@
           </select>
         </div>
         <div class="form-row">
-          <textarea class="col-xs-12 form-group required form-control" rows="3">Please give more details about the issue</textarea>
+          <textarea class="col-xs-12 col-md-8 form-group required form-control" rows="3">Please give more details about the issue</textarea>
         </div>
         <div class="form-row text-center">
-          <input class='col-xs-12 form-group' value="Tag this issue" class="form-control" rows="1"></input>
-          <button class='col-xs-12 form-group'type="submit" class="btn">Add tag</button>
+          <input class='col-xs-12 col-md-8 form-group' value="Tag this issue" class="form-control" rows="1"></input>
+          <button class='col-xs-12 col-md-8 form-group'type="submit" class="btn">Add tag</button>
         </form>
-        <button class='col-xs-12 form-group'type="submit" class="btn">Save this issue </button>
+        <button class='col-xs-12 col-md-8 form-group'type="submit" class="btn">Save this issue </button>
       </div>
     </main>

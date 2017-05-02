@@ -9,8 +9,8 @@
     ]);
 
 
-/**
- * Config function with the navigation states
+ /**
+ * This is the router of the application, where the different states are declared and nested.
  */
  angular.module('app').config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $stateProvider.state('login', {
@@ -39,7 +39,7 @@
 
      $stateProvider.state('newissue', {
         url: '/newissue',
-        templateUrl: './templates/newissue.html'
+        templateUrl: './templates/new-issue.html'
     });
 
     $stateProvider.state('register', {
