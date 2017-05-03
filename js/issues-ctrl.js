@@ -6,21 +6,31 @@ angular.module('app').controller('ListPageController', function(ListService) {
   });
 });
 
-angular.module('app').controller('ListPanelController', function(ListService, $stateParams) {
+angular.module('app').controller('ListPanelController', function(IssuesService, $stateParams) {
   var listPanelCtrl = this;
 
   listPanelCtrl.alignment = 'left';
 
   var issueId = $stateParams.id;
-  ListService.getIssue(issueId).then(function(issue) {
+  IssuesService.getIssue(issueId).then(function(issue) {
     listPanelCtrl.issue = issue;
   });
 
 
 
-angular.module('app').factory('ListService', function($http) {
+angular.module('app').factory('IssuesService', function($http) {
 
   var service = {};
+
+  /**
+  * Returns all the issues
+  */
+  service.getAllIssues = function(){
+
+
+
+
+  }
 
 
   return service;
