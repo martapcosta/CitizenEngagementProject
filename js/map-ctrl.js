@@ -16,7 +16,6 @@
     .then(function (position) {
         // This will be executed when the location is accessed
         map.center = {
-            // These are the coordinates for the center of Yverdon-les-Bains
             lat: position.coords.latitude,
             lng: position.coords.longitude,
             zoom: 15

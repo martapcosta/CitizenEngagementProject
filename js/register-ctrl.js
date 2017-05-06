@@ -3,6 +3,8 @@
   register.user = {};
   // role has citizen by default
   register.user.roles = ["citizen"];
+
+  // Creates an new user
   register.createUser = function() {
     delete register.error;
     $http({

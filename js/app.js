@@ -27,15 +27,15 @@
     $stateProvider.state('home', {
         url: '',
         templateUrl: './templates/main.html',
-        controller: 'HomePageController',
-        controllerAs: 'homePageCtrl'
+        controller: 'IssuesListCtrl',
+        controllerAs: 'issuelistctrl'
     });
 
     $stateProvider.state('issues', {
     url: '/issues',
     templateUrl: '/templates/issues.html',
-    controller: 'HomePageController',
-    controllerAs: 'homePageCtrl'
+    controller: 'IssuesListCtrl',
+    controllerAs: 'issuelistctrl'
     });
 
      $stateProvider.state('newissue', {

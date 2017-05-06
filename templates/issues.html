@@ -27,15 +27,16 @@
       </div>
     </div>
   </form>
-  <div ng-controller="HomePageController as homePageCtrl" class="list-group">
-    <div ng-repeat="issue in homePageCtrl.issues | orderBy: '-time' | limitTo: 10">
+  <div ng-controller="IssuesListCtrl as issuelistctrl" class="list-group">
+    <!--<div ng-repeat="issue in issuelistctrl.issues | orderBy: '-createdAt' | limitTo: 10">-->
+    <div ng-repeat="issue in issuelistctrl.issues">
       <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
-          <h3 class="mb-1">{{issue.title}}</h3>
-          <small>{{issue.time | date: 'HH:MM'}}</small>
+          <small>{{issue.createdAt | date: "dd.MM.yyyy HH:mm"}}</small>
         </div>
-        <p class="mb-1">{{issue.text}}</p>
-        <span><i class="glyphicon glyphicon-comment"> </i> {{issue.ncomments}}</span>
+        <p class="mb-1">{{issue.description}}</p>
+        <span><i class="glyphicon glyphicon-comment"> </i></span>
+        <!--<span><i class="glyphicon glyphicon-comment"> </i>{{issue.ncomments}}</span>-->
       </a>
     </div>
   </div>

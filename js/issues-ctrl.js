@@ -1,37 +1,63 @@
-angular.module('app').controller('ListPageController', function(ListService) {
-  var listPageCtrl = this;
-
-  ChatsService.getChats().then(function(chats) {
-    listPageCtrl.issues = issues;
-  });
-});
-
-angular.module('app').controller('ListPanelController', function(IssuesService, $stateParams) {
-  var listPanelCtrl = this;
-
-  listPanelCtrl.alignment = 'left';
-
-  var issueId = $stateParams.id;
-  IssuesService.getIssue(issueId).then(function(issue) {
-    listPanelCtrl.issue = issue;
-  });
-
-
-
-angular.module('app').factory('IssuesService', function($http) {
+/**
+ * IssuesService
+ */
+ angular.module('app').factory('IssuesService', function($http,AuthService) {
 
   var service = {};
 
   /**
   * Returns all the issues
   */
-  service.getAllIssues = function(){
-
-
-
-
+  service.getAllIssues = function(){ //add page and number of issues as arguments
+   return $http({
+    method: 'POST',
+    url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/searches',
+    data: { "state": 
+    {"$in": [ "new", "inProgress" ]}
   }
-
-
-  return service;
 });
+ };
+
+  service.getAllIssues = function() {//add page and number of issues as arguments
+    return loadIssues().then(function(issues) {
+      
+      return issues;
+    });
+  };
+
+
+ var issuePromise;
+ function loadIssues() {
+  if (!issuePromise) {
+    issuePromise = $http({
+      method: 'POST',
+      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/searches',
+      data: { "state": 
+      {"$in": [ "new", "inProgress" ]}
+    }
+  }).then(function(res) {
+    return res.data;
+  });
+}
+
+return issuePromise;
+}
+
+
+return service;
+});
+
+
+ angular.module('app').controller('IssuesListCtrl', function(IssuesService) {
+
+  var IssuesListCtrl = this;
+
+  IssuesService.getAllIssues().then(function(issues) {
+    console.log(issues);
+    IssuesListCtrl.issues = issues;
+  });
+
+});
+
+
+
