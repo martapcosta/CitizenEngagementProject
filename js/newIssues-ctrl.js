@@ -9,7 +9,7 @@ angular.module('app').controller('NewIssueCtrl', function NewIssueCtrl($geolocat
 
     $http({
       method: 'POST',
-      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issue', //https://citizen-api.herokuapp.com/api/auth',
+      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues', //https://citizen-api.herokuapp.com/api/auth',
       data: newIssue.issue
     }).then(function(res) {
       $state.go('home');

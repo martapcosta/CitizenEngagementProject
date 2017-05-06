@@ -1,18 +1,17 @@
 
 <main class="container">
   <!-- leaflet map -->
+  <div class="container">
+    <div class="map-container" ng-controller="MapCtrl as map">
+     <leaflet width="100%" height="480px"
+       lf-center="map.center"
+       defaults="map.defaults"
+       markers="map.draggableMarker">
+    </leaflet>
+  </div>
 <!-- end of leaflet map -->
-<div class="container">
-  <div class="map-container" ng-controller="MapCtrl as map">
-   <leaflet width="100%" height="480px"
-     lf-center="map.center"
-     defaults="map.defaults"
-     markers="map.draggableMarker" ng-change="newIssue.location=map.draggableMarker">
-  </leaflet>
-</div>
     <div class='col-md-8'>
       <form name="form" ng-submit="newIssue.createNewIssue()" role="form">
-
         <div class='form-row'>
           <label class='control-label'>Select Type</label>
           <select class="form-control" ng-model="newIssue.issue.issueTypeHref" required>
@@ -24,9 +23,11 @@
           </select>
         </div>
         <div class="form-row">
-          <textarea class="col-xs-12 col-md-8 form-group required form-control" rows="3" ng-model="newIssue.issue.description" required>Please give more details about the issue</textarea>
+          <label class='control-label'>Description</label>
+          <textarea class="col-xs-12 col-md-8 form-group required form-control" rows="3" ng-model="newIssue.issue.description">Please give more details about the issue</textarea>
         </div>
         <div class="form-row text-center">
+          <label class='control-label'>Tags</label>
           <tags-input ng-model="newIssue.issue.tags"></tags-input>
         </div>
         </form>
