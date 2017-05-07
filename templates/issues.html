@@ -15,10 +15,10 @@
      </leaflet>
    </div> 
    <!-- end of leaflet map -->
-   <form role="form" id="form-buscar">
+   <form role="form" id="form-buscar" ng-submit="register.createUser()">
     <div class="form-group">
       <div class="input-group">
-        <input id="1" class="form-control" type="text" name="search" placeholder="Search..." required/>
+        <input id="1" class="form-control" type="text" name="search" placeholder="Issues matching the specified text" required/>
         <span class="input-group-btn">
           <button class="btn btn-success">
             <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Search
@@ -35,8 +35,8 @@
           <small>{{issue.createdAt | date: "dd.MM.yyyy HH:mm"}}</small>
         </div>
         <p class="mb-1">{{issue.description}}</p>
-        <span><i class="glyphicon glyphicon-comment"> </i></span>
-        <!--<span><i class="glyphicon glyphicon-comment"> </i>{{issue.ncomments}}</span>-->
+        <span><i class="glyphicon glyphicon-comment"> {{getComments(issue.id)}}</i></span>
+        <!--<span><i class="glyphicon glyphicon-comment">  </i>{{issue.ncomments}}</span>-->
       </a>
     </div>
   </div>

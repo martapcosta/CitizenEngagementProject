@@ -1,7 +1,7 @@
 /**
  * CommentsService.
  */
-app.service('CommentsService', function ($http, apiUrl, $filter) {
+app.service('CommentsService', function ($http, $filter) {
     
 var service = {};
 
@@ -17,10 +17,19 @@ service.addComment = function(comment, issueId){
                 url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/' + issueId + '/comments'
             });    
     };
-});
 
 /**
- * The controller managining the issues comments
+* Order the comments by their createdAt property.
+*/
+service.orderComments = function (comments) {
+    return $filter('orderBy')(comments, '-createdAt', true);
+    
+    };
+
+
+
+/**
+ * The controller managing issues comments
  */
 app.controller('CommentsCtrl', function ($rootScope, $scope, CommentsService) {
     
