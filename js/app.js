@@ -38,7 +38,8 @@
       $stateProvider.state('newissue', {
           url: '/newissue',
           templateUrl: './templates/new-issue.html',
-          controllerAs: 'newIssues-ctrl'
+          controller: 'NewIssueCtrl',
+          controllerAs: 'newIssue'
       });
       $stateProvider.state('register', {
         url: "/register",

@@ -15,7 +15,7 @@
      </leaflet>
    </div> 
    <!-- end of leaflet map -->
-   <form role="form" id="form-buscar" ng-submit="register.createUser()">
+   <form role="form" id="form-buscar" ng-submit="IssuesListCtrl.loadSearchedIssues(search)">
     <div class="form-group">
       <div class="input-group">
         <input id="1" class="form-control" type="text" name="search" placeholder="Issues matching the specified text" required/>

@@ -1,25 +1,21 @@
-angular.module('app').controller('NewIssueCtrl', function NewIssueCtrl($geolocation, $http, $log, $state) {
-  var newIssue = this;
+/**
+ * News Issues Service
+ */
+ angular.module('app').factory('NewIssuesService', function($http,AuthService) {
 
-  newIssue.issue = {};
-  newIssue.issue.tags = [];
+  var service = {};
 
-  newIssue.createNewIssue = function createNewIssue() {
-    delete createNewIssue.error;
 
-    $http({
-      method: 'POST',
-      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues', //https://citizen-api.herokuapp.com/api/auth',
-      data: newIssue.issue
-    }).then(function(res) {
-      $state.go('home');
-    }).catch(function(error) {
-      login.error = "Error while trying to create a new issue";
-      $log.error(error);
-    })
-  }
+  service.getAllIssuesTypes = function() {//add page and number of issues as arguments
+    return loadIssueTypes().then(function(issueTypes) {
 
-  newIssue.getAllIssueTypes = function getAllIssueTypes() {
+      return issueTypes;
+    });
+  };
+
+   //newIssue.issue = {};
+  //newIssue.issue.tags = [];
+  /*newIssue.getAllIssueTypes = function () {
     return $http({
       method: 'GET',
       url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issueTypes'
@@ -37,5 +33,57 @@ angular.module('app').controller('NewIssueCtrl', function NewIssueCtrl($geolocat
     }, function (error) {
       return null;
     });
+  }*/
+
+
+
+//Promise All Issues
+  var issueTypePromise;
+  function loadIssueTypes() {
+    if (!issueTypePromise) {
+      issueTypePromise = $http({
+        method: 'GET',
+        url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issueTypes'
+    }).then(function(res) {
+      return res.data;
+    });
   }
+
+  return issueTypePromise;
+}
+
+return service;
 });
+//end of service
+
+
+
+angular.module('app').controller('NewIssueCtrl', function (NewIssuesService) {
+  var newIssue = this;
+
+  NewIssuesService.getAllIssuesTypes().then(function(issueTypes) {
+    newIssue.issueTypes = issueTypes;
+  });
+});
+
+
+
+
+
+
+  /*newIssue.createNewIssue = function() {
+    delete createNewIssue.error;
+
+    $http({
+      method: 'POST',
+      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues', 
+      data: newIssue.issue
+    }).then(function(res) {
+      $state.go('home');
+    }).catch(function(error) {
+      login.error = "Error while trying to create a new issue";
+      $log.error(error);
+    })
+  }*/
+
+

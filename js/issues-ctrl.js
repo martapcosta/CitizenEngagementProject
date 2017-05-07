@@ -13,7 +13,14 @@
     });
   };
 
+  service.getSearchedIssues = function() {
+    return loadSearchedIssues().then(function(issues) {
 
+      return issues;
+    });
+  };
+
+//Promise All Issues
   var issuePromise;
   function loadIssues() {
     if (!issuePromise) {
@@ -31,6 +38,21 @@
   return issuePromise;
 }
 
+//Promise Searched Issues
+  var issueSPromise;
+  function loadSearchedIssues(word) {
+    if (!issueSPromise) {
+      issueSPromise = $http({
+        method: 'GET',
+        url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues?search=' + word
+    }).then(function(res) {
+      return res.data;
+    });
+  }
+
+  return issueSPromise;
+}
+
 
 
 return service;
@@ -45,8 +67,13 @@ return service;
     IssuesListCtrl.issues = issues;
   });
 
+  IssuesService.getSearchedIssues().then(function(issues) {
+    IssuesListCtrl.issues = issues;
+  });
 
-    // Get comments of a given issueId
+  
+
+  // Get comments of a given issueId
   $scope.getComments = function(issueId) {
   
   return issueId;
