@@ -22,6 +22,9 @@
       $stateProvider.state('welcome', {
           url: '/welcome',
           templateUrl: './templates/welcome.html',
+          controller: 'WelcomePageController',
+          controllerAs: 'welcomePageCtrl'
+
       });
       $stateProvider.state('home', {
           url: '',

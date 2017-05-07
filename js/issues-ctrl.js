@@ -67,9 +67,9 @@ return service;
     IssuesListCtrl.issues = issues;
   });
 
-  IssuesService.getSearchedIssues().then(function(issues) {
+  /*IssuesService.getSearchedIssues().then(function(issues) {
     IssuesListCtrl.issues = issues;
-  });
+  });*/
 
   
 
