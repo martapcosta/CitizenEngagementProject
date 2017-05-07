@@ -12,12 +12,16 @@
 <!-- end of leaflet map -->
     <div class='col-md-8'>
       <form name="form" ng-submit="newIssue.createNewIssue()" role="form">
-        <div class='form-row'>
+        <div ng-controller="NewIssueCtrl as newIssue" class='form-row'>
           <label class="item item-input item-select">
               <div class="input-label">Type</div>
-              <h1>dcmdocdocm {{newIssue.issueTypes}}</h1>
-              <!--<select ng-model="newIssue.issueTypes" ng-options="type as type.name for type in issueTypes">
-              </select>-->
+              <select>
+                <option 
+                  value="{{issueType.name}}" 
+                  ng-repeat="issueType in newIssue.issueTypes">
+                  {{issueType.name}}
+                </option>
+              </select>
           </label>
         </div>
         <div class="form-row">
