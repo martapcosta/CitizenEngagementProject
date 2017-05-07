@@ -14,42 +14,37 @@
  * This is the router of the application, where the different states are declared and nested.
  */
  angular.module('app').config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
-    $stateProvider.state('login', {
-        url: '/login',
-        templateUrl: './templates/login.html',
-        controller: 'LoginCtrl as login'
-    });
-    $stateProvider.state('welcome', {
-        url: '/welcome',
-        templateUrl: './templates/welcome.html',
-    });
-
-    $stateProvider.state('home', {
-        url: '',
-        templateUrl: './templates/main.html',
-        controller: 'IssuesListCtrl',
-        controllerAs: 'issuelistctrl'
-    });
-
-    $stateProvider.state('issues', {
-    url: '/issues',
-    templateUrl: '/templates/issues.html',
-    controller: 'IssuesListCtrl',
-    controllerAs: 'issuelistctrl'
-    });
-
-     $stateProvider.state('newissue', {
-        url: '/newissue',
-        templateUrl: './templates/new-issue.html'
-    });
-
-    $stateProvider.state('register', {
-      url: "/register",
-      templateUrl: "./templates/register.html",
-      controller: 'RegisterCtrl as register'
-    });
-
-
+      $stateProvider.state('login', {
+          url: '/login',
+          templateUrl: './templates/login.html',
+          controller: 'LoginCtrl as login'
+      });
+      $stateProvider.state('welcome', {
+          url: '/welcome',
+          templateUrl: './templates/welcome.html',
+      });
+      $stateProvider.state('home', {
+          url: '',
+          templateUrl: './templates/main.html',
+          controller: 'IssuesListCtrl',
+          controllerAs: 'issuelistctrl'
+      });
+      $stateProvider.state('issues', {
+          url: '/issues',
+          templateUrl: '/templates/issues.html',
+          controller: 'IssuesListCtrl',
+          controllerAs: 'issuelistctrl'
+      });
+      $stateProvider.state('newissue', {
+          url: '/newissue',
+          templateUrl: './templates/new-issue.html',
+          controllerAs: 'newIssues-ctrl'
+      });
+      $stateProvider.state('register', {
+        url: "/register",
+        templateUrl: "./templates/register.html",
+        controller: 'RegisterCtrl as register'
+      });
 
     $urlRouterProvider.otherwise(function ($injector) {
         $injector.get('$state').go('home');

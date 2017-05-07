@@ -12,21 +12,18 @@
 <!-- end of leaflet map -->
     <div class='col-md-8'>
       <form name="form" ng-submit="newIssue.createNewIssue()" role="form">
-        <div class='form-row'>
-          <label class='control-label'>Select Type</label>
-          <select class="form-control" ng-model="newIssue.issue.issueTypeHref" required>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
+        <!--div class='form-row' ng-controller="IssueTypesCtrl as issueTypes">
+          <label class="item item-input item-select">
+              <div class="input-label">Type</div>
+              <select ng-model="newIssue.issue.issueTypeHref" ng-options="type as type.name for type in issueTypes.types">
+              </select>
+          </label>
+        </div-->
         <div class="form-row">
           <label class='control-label'>Description</label>
           <textarea class="col-xs-12 col-md-8 form-group required form-control" rows="3" ng-model="newIssue.issue.description">Please give more details about the issue</textarea>
         </div>
-        <div class="form-row text-center">
+        <div class="form-row">
           <label class='control-label'>Tags</label>
           <tags-input ng-model="newIssue.issue.tags"></tags-input>
         </div>
