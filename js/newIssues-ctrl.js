@@ -60,11 +60,7 @@ return service;
 angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, $log, $scope) {
   var newIssue = this;
   newIssue.issue = {};
-
-  newIssue.init = function()
-  {
-    newIssue.locationOK = false;
-  }
+  newIssue.locationOK = false;
 
   NewIssuesService.getAllIssuesTypes().then(function(issueTypes)
   {
@@ -74,7 +70,7 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, $lo
   $scope.updateLocation = function(marker)
   {
     //newIssue.issue.location = marker;
-    $log.info('marker.features.geometry');
+    $log.info(marker);
     newIssue.locationOK = true;
   }
 

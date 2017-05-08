@@ -51,7 +51,7 @@
 
   $scope.locationPoint = function()
   {
-     var location = {};
+     /*var location = {};
      map.draggableMarker.toGeoJSON().then(function(res) {
        location = res.features.geometry;
        return location;
@@ -59,7 +59,8 @@
        login.error = "Error while trying to create a new issue";
        $log.error(error);
        return null;
-     });
+     });*/
+     return map.draggableMarker;
   };
   /**
   * Loads the map
