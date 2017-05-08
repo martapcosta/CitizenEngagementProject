@@ -1,23 +1,25 @@
 
 <main class="container">
   <!-- leaflet map -->
-  <div class="container">
+  <div class="container" ng-controller="NewIssueCtrl as newIssue">
     <div class="map-container" ng-controller="MapCtrl as map">
      <leaflet width="100%" height="480px"
        lf-center="map.center"
        defaults="map.defaults"
        markers="map.draggableMarker">
     </leaflet>
+    <button class='col-xs-12 col-md-8 form-group' type="submit" class="btn"
+    ng-click="updateLocation(locationPoint())">Save location</button>
   </div>
 <!-- end of leaflet map -->
-    <div class='col-md-8'>
+    <div class='col-md-8' ng-if="newIssue.locationOK == true">
       <form name="form" ng-submit="newIssue.createNewIssue()" role="form">
-        <div ng-controller="NewIssueCtrl as newIssue" class='form-row'>
+        <div class='form-row'>
           <label class="item item-input item-select">
               <div class="input-label">Type</div>
               <select>
-                <option 
-                  value="{{issueType.name}}" 
+                <option
+                  value="{{issueType.name}}"
                   ng-repeat="issueType in newIssue.issueTypes">
                   {{issueType.name}}
                 </option>
@@ -32,8 +34,9 @@
           <label class='control-label'>Tags</label>
           <tags-input ng-model="newIssue.issue.tags"></tags-input>
         </div>
+        <button class='col-xs-12 col-md-8 form-group' type="submit" class="btn">Save this issue </button>
         </form>
-        <button class='col-xs-12 col-md-8 form-group'type="submit" class="btn">Save this issue </button>
+
       </div>
     </div>
     </main>

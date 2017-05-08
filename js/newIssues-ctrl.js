@@ -13,7 +13,6 @@
     });
   };
 
-   //newIssue.issue = {};
   //newIssue.issue.tags = [];
   /*newIssue.getAllIssueTypes = function () {
     return $http({
@@ -58,25 +57,33 @@ return service;
 
 
 
-angular.module('app').controller('NewIssueCtrl', function (NewIssuesService) {
+angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, $log, $scope) {
   var newIssue = this;
+  newIssue.issue = {};
 
-  NewIssuesService.getAllIssuesTypes().then(function(issueTypes) {
+  newIssue.init = function()
+  {
+    newIssue.locationOK = false;
+  }
+
+  NewIssuesService.getAllIssuesTypes().then(function(issueTypes)
+  {
     newIssue.issueTypes = issueTypes;
   });
-});
 
+  $scope.updateLocation = function(marker)
+  {
+    //newIssue.issue.location = marker;
+    $log.info('marker.features.geometry');
+    newIssue.locationOK = true;
+  }
 
-
-
-
-
-  /*newIssue.createNewIssue = function() {
+  newIssue.createNewIssue = function()
+  {
     delete createNewIssue.error;
-
     $http({
       method: 'POST',
-      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues', 
+      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues',
       data: newIssue.issue
     }).then(function(res) {
       $state.go('home');
@@ -84,6 +91,6 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService) {
       login.error = "Error while trying to create a new issue";
       $log.error(error);
     })
-  }*/
+  };
 
-
+});

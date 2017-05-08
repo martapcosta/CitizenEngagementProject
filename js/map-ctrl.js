@@ -4,20 +4,63 @@
  angular.module("app").controller("MapCtrl", function($scope, $geolocation){
  	var map = this;
 
+  // Fixes the default Icon bug, see slide #10
+  var defaultIcon = {
+   iconUrl: "assets/leaflet/images/marker-icon.png",
+   shadowUrl: "assets/leaflet/images/marker-shadow.png",
+   iconSize: [25, 41],
+   iconAnchor: [12, 41],
+   popupAnchor: [1, -34],
+   tooltipAnchor: [16, -28],
+   shadowSize: [41, 41]
+  };
 
   /**
   * Returns a marker Object giving the user's position
   */
-  function defaultMarker(position) {
+  function defaultMarker(position)
+  {
     return {
       lat: position.lat,
       lng: position.lng,
       message: "<p>My Position</p>",
-          icon: defaultIcon // change to different icon
-        };
+      icon: defaultIcon // change to different icon
+    };
+  }
+
+  //Defines the default center of the map and the zoom level
+  map.center = {
+    // These are the coordinates for the center of Yverdon-les-Bains
+    lat: 46.778474,
+    lng: 6.641183,
+    zoom: 15
+  };
+
+  map.draggableMarker = [{
+    lat: map.center.lat,
+    lng: map.center.lng,
+    icon: defaultIcon,
+    draggable: true,
+    label: {
+      message: "Hey, drag me if you want",
+      options: {
+        noHide: true
       }
+    }
+  }];
 
-
+  $scope.locationPoint = function()
+  {
+     var location = {};
+     map.draggableMarker.toGeoJSON().then(function(res) {
+       location = res.features.geometry;
+       return location;
+     }).catch(function(error) {
+       login.error = "Error while trying to create a new issue";
+       $log.error(error);
+       return null;
+     });
+  };
   /**
   * Loads the map
   */
@@ -60,13 +103,7 @@
     }*/
 
 
-  //Defines the default center of the map and the zoom level
-  map.center = {
-      // These are the coordinates for the center of Yverdon-les-Bains
-      lat: 46.778474,
-      lng: 6.641183,
-      zoom: 15
-    };
+
 
   /**
   * Inserts issues data on the map with markers.
@@ -115,30 +152,9 @@ map.defaults = {
   		maxZoom: 16, // Limit the maximal zoom
    };
 
-	// Fixes the default Icon bug, see slide #10
- var defaultIcon = {
-   iconUrl: "assets/leaflet/images/marker-icon.png",
-   shadowUrl: "assets/leaflet/images/marker-shadow.png",
-   iconSize: [25, 41],
-   iconAnchor: [12, 41],
-   popupAnchor: [1, -34],
-   tooltipAnchor: [16, -28],
-   shadowSize: [41, 41]
- };
 
- map.draggableMarker = [
- {
-  lat: map.center.lat,
-  lng: map.center.lng,
-  icon: defaultIcon,
-  draggable: true,
-  label: {
-    message: "Hey, drag me if you want",
-    options: {
-      noHide: true
-    }
-  }
-}];
+
+
 	// Defines the markers that will be added to the map.
   	// Add any marker object to this array for it to appear on the map
   	/*map.markers = [
