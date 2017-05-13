@@ -28,20 +28,9 @@
      </leaflet>
    </div> 
    <!-- end of leaflet map -->
-   <form role="form" id="form-buscar">
-    <div class="form-group">
-      <div class="input-group">
-        <input id="1" class="form-control" type="text" name="search" placeholder="Search..." required/>
-        <span class="input-group-btn">
-          <button class="btn btn-success">
-            <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Search
-          </button>
-        </span>
-      </div>
-    </div>
-  </form>
+        <input id="1" ng-model="word" class="form-control" type="text" name="search" placeholder="Search issues matching the specified text" required/>
   <div ng-controller="IssuesListCtrl as issuelistctrl" class="list-group">
-    <div ng-repeat="issue in issuelistctrl.issues | limitTo: 10">
+    <div ng-repeat="issue in issuelistctrl.issues | limitTo: 10 | filter:word">
     <!--<div ng-repeat="issue in issuelistctrl.issues | orderBy: '-time' | limitTo: 10">-->
       <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
@@ -58,7 +47,6 @@
 </main>
 <footer class="navbar navbar-inverse navbar-fixed-bottom">
   <div class="container">
-    <button class="btn btn-default navbar-btn">Privacy &amp; Terms</button>
     <div class="navbar-right">
       <p class="navbar-text">&copy; 2017 - Marta Costa &amp; Rute Pereira</p>
     </div>

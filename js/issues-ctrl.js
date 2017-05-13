@@ -5,54 +5,36 @@
 
   var service = {};
 
-
-  service.getAllIssues = function() {//add page and number of issues as arguments
-    return loadIssues().then(function(issues) {
-
+  service.getAllIssues = function() {
+    return fetchAllIssues().then(function(issues) {
       return issues;
     });
   };
 
-  service.getSearchedIssues = function() {
-    return loadSearchedIssues().then(function(issues) {
 
-      return issues;
-    });
-  };
-
-//Promise All Issues
-  var issuePromise;
-  function loadIssues() {
-    if (!issuePromise) {
-      issuePromise = $http({
-        method: 'POST',
-        url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/searches',
-        data: { "state": 
-        {"$in": [ "new", "inProgress" ]}
-      }
-    }).then(function(res) {
-      return res.data;
-    });
-  }
-
-  return issuePromise;
+  function fetchAllIssues(page, items) {
+  page = page || 1; // Start from page 1
+  items = items || [];
+  // GET the current page
+  return $http({
+    method: 'POST',
+    url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/searches',
+    data: { "state": 
+    {"$in": [ "new", "inProgress" ]}
+  },
+  params: {
+    page: page
+  } 
+}).then(function(res) {
+  if (res.data.length) {
+      // If there are any items, add them
+      // and recursively fetch the next page
+      items = items.concat(res.data);
+      return fetchAllIssues(page + 1, items);
+    }
+    return items;
+  });
 }
-
-//Promise Searched Issues
-  var issueSPromise;
-  function loadSearchedIssues(word) {
-    if (!issueSPromise) {
-      issueSPromise = $http({
-        method: 'GET',
-        url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues?search=' + word
-    }).then(function(res) {
-      return res.data;
-    });
-  }
-
-  return issueSPromise;
-}
-
 
 
 return service;
@@ -65,18 +47,13 @@ return service;
 
   IssuesService.getAllIssues().then(function(issues) {
     IssuesListCtrl.issues = issues;
+
   });
-
-  /*IssuesService.getSearchedIssues().then(function(issues) {
-    IssuesListCtrl.issues = issues;
-  });*/
-
-  
 
   // Get comments of a given issueId
   $scope.getComments = function(issueId) {
-  
-  return issueId;
+
+    return issueId;
   /*  $http ({
         method: 'GET',
         url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/' + issueId + '/comments'
