@@ -50,7 +50,13 @@
     controller: 'RegisterCtrl as register'
   });
   $stateProvider.state('issues.details', {
-    url: "/:id",
+    url: "/issues/:id",
+    resolve: {
+      // Get the issue which information are displayed on the detail screen.
+      issue: function ($stateParams, IssuesService) {
+        return IssuesService.getIssueData($stateParams.issueId);
+      }
+    },
     templateUrl: "./templates/issueDetails.html",
     controller: 'DetailsCtrl as details'
   });

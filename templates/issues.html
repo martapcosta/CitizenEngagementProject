@@ -19,7 +19,7 @@
    <div ng-controller="IssuesListCtrl as issuelistctrl" class="list-group">
     <!--<div ng-repeat="issue in issuelistctrl.issues | orderBy: '-createdAt' | limitTo: 10">-->
     <div ng-repeat="issue in issuelistctrl.issues | filter:word">
-    <a ui-sref="issues.details" href="#" class="list-group-item list-group-item-action flex-column  align-items-start">
+    <a ng-click="goToDetails(issue.id)" href="#" class="list-group-item list-group-item-action flex-column  align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <small>{{issue.createdAt | date: "dd.MM.yyyy HH:mm"}}</small>
         </div>

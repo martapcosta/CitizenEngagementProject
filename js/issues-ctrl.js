@@ -1,7 +1,7 @@
 /**
  * IssuesService
  */
- angular.module('app').factory('IssuesService', function($http,AuthService) {
+ angular.module('app').factory('IssuesService', function($http,AuthService,$q) {
 
   var service = {};
 
@@ -36,12 +36,26 @@
   });
 }
 
-
+/**
+* Get data for a given issue
+*/
+function getIssueData(id) {
+  var dfd = $q.defer();
+    $http({
+      method: 'GET',
+      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/' + id
+    }).success(function (data) {
+      dfd.resolve(data);
+    }).error(function () {
+      dfd.resolve(null);
+    });
+    return dfd.promise;
+}
 return service;
 });
 
 
- angular.module('app').controller('IssuesListCtrl', function($http,IssuesService,$scope,AuthService) {
+ angular.module('app').controller('IssuesListCtrl', function($http,$state,IssuesService,$scope,AuthService) {
 
   var IssuesListCtrl = this;
 
@@ -50,45 +64,38 @@ return service;
 
   });
 
+    /**
+     * goToDetails function in the scope.
+     */
+    $scope.goToDetails = function (issueId) {
+        $state.go('issues.details', {issueId: issueId});
+    };
 
 });
 
 /**
  * Controller to manage an issue data and show it to the user.
  */
-angular.module('app').controller('DetailsCtrl', function ($rootScope, $scope, $state, issue, store) {
+ angular.module('app').controller('DetailsCtrl', function ($rootScope, $scope, $state, issue, store) {
 
-    // Disable the swipe menu for this view.
-    $scope.$on('$ionicView.beforeEnter', function () {
-        $rootScope.enableLeft = false;
-    });
 
     // Reload the data when a new comment is posted.
-    $scope.$on('newComment', function (e, data) {
-        $scope.issue = data;
-    });
+    //$scope.$on('newComment', function (e, data) {
+    //  $scope.issue = data;
+    //});
 
     /**
      * Register the showIssueOnMal function to the scope.
      * This function saves the localisation of the issue in the LocalStorage in order to pass them to the app.details.map view.
      */
-    $scope.showIssueOnMap = function () {
-        store.set('issue', {
-            lat: $scope.issue.lat,
-            lng: $scope.issue.lng,
-            description: $scope.issue.description
-        });
-        $state.go('app.details.map');
-    };
+     /*$scope.showIssueOnMap = function () {
+    store.set('issue', {
+        lat: $scope.issue.lat,
+        lng: $scope.issue.lng,
+        description: $scope.issue.description
+      });
+      $state.go('app.details.map');
+    };*/
 
-    // Loads the issue's data in the view or show an error message if this fails.
-    Loading.show(messages.loading);
-    if (issue) {
-        $scope.issue = issue;
-        Loading.hide();
-    } else {
-        $scope.error = {msg: messages.error_issue};
-        Loading.hide();
-    }
-});
+  });
 

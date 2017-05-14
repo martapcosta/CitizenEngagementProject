@@ -1,27 +1,27 @@
 
-        <button ng-if="!error" class="button back-button button-icon ion-pricetags" ng-controller="TagsCtrl" ng-click="showAddTagPopup()"></button>
-        <button ng-if="!error" class="button back-button button-icon ion-location" ng-click="showIssueOnMap()"></button>
+        <button ng-if="!error" class="button back-button button-icon" ng-controller="TagsCtrl" ng-click="showAddTagPopup()"></button>
+        <button ng-if="!error" class="button back-button button-icon" ng-click="showIssueOnMap()"></button>
     <div class="issue-details">
         <div  ng-if="!error">
             <div class="row">
                 <div class="col tags">
-                    <span ng-repeat="tag in issue.tags" ng-click="removeTag(tag)">{{tag}}<i class="icon ion-close"></i></span>
-                    <span class="no-tag" ng-if="issue.tags.length < 1">Aucun tag</span>
+                    <span ng-repeat="tag in issue.tags" ng-click="removeTag(tag)">{{tag}}<i class="icon"></i></span>
+                    <span class="no-tag" ng-if="issue.tags.length < 1">No tag</span>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <h1>Création</h1>
+                    <h1>Creation</h1>
                     <p>{{issue.createdOn| date:'dd MMM yyyy'}}</p>
                 </div>
                 <div class="col">
-                    <h1>Dernière modification</h1>
+                    <h1>Last modification</h1>
                     <p>{{issue.updatedOn| date:'dd MMM yyyy'}}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <h1>Statut</h1>
+                    <h1>Status</h1>
                     <div class="row state {{issue.state}}">
                         <div class="col">Assigné</div>
                         <div class="col">Reconnu</div>
@@ -56,8 +56,8 @@
         <div class="issue-error" ng-if="error">
             <p>{{error.msg}}</p>
         </div>
-    </ion-content>
-    <ion-footer-bar align-title="left" class="details-footer" ng-controller="CommentsCtrl" ng-if="!error">
+    </div>
+    <div align-title="left" class="details-footer" ng-controller="CommentsCtrl" ng-if="!error">
         <form class="item-input-inset" name="commentForm">
             <label class="item-input-wrapper">
                 <input type="text" placeholder="Nouveau commentaire" maxlength="140" required ng-model="comment">
@@ -69,3 +69,4 @@
                 ng-disabled="commentForm.$invalid">
             </button>
         </form>
+</div>
