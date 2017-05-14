@@ -1,0 +1,71 @@
+
+        <button ng-if="!error" class="button back-button button-icon ion-pricetags" ng-controller="TagsCtrl" ng-click="showAddTagPopup()"></button>
+        <button ng-if="!error" class="button back-button button-icon ion-location" ng-click="showIssueOnMap()"></button>
+    <div class="issue-details">
+        <div  ng-if="!error">
+            <div class="row">
+                <div class="col tags">
+                    <span ng-repeat="tag in issue.tags" ng-click="removeTag(tag)">{{tag}}<i class="icon ion-close"></i></span>
+                    <span class="no-tag" ng-if="issue.tags.length < 1">Aucun tag</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h1>Création</h1>
+                    <p>{{issue.createdOn| date:'dd MMM yyyy'}}</p>
+                </div>
+                <div class="col">
+                    <h1>Dernière modification</h1>
+                    <p>{{issue.updatedOn| date:'dd MMM yyyy'}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h1>Statut</h1>
+                    <div class="row state {{issue.state}}">
+                        <div class="col">Assigné</div>
+                        <div class="col">Reconnu</div>
+                        <div class="col">En cours</div>
+                        <div class="col">Rejeté</div>
+                        <div class="col">Résolu</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col issue-type">
+                    <h1>Type du problème</h1>
+                    <p>{{issue.issueType.name}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h1>Description</h1>
+                    <p>{{issue.description}}</p>
+                </div>
+            </div>
+            <div class="col comments">
+                <h1>{{issue.comments.length}} Commentaire{{issue.comments.length > 1 ? 's' : ''}}</h1>
+                <div class="card" id="{{comment.id}}" ng-repeat="comment in issue.comments">
+                    <div>{{comment.text}}</div>
+                    <div>
+                        <span>{{comment.author.name}}, le {{comment.postedOn| date: 'dd MMM yyyy'}}.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="issue-error" ng-if="error">
+            <p>{{error.msg}}</p>
+        </div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="details-footer" ng-controller="CommentsCtrl" ng-if="!error">
+        <form class="item-input-inset" name="commentForm">
+            <label class="item-input-wrapper">
+                <input type="text" placeholder="Nouveau commentaire" maxlength="140" required ng-model="comment">
+            </label>
+            <button
+                class="button back-button button-icon"
+                ng-class="{'ion-paper-airplane': isAndroid,'ion-ios-paperplane-outline': !isAndroid}"
+                ng-click="addComment()"
+                ng-disabled="commentForm.$invalid">
+            </button>
+        </form>

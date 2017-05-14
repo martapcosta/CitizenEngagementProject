@@ -13,7 +13,7 @@
    popupAnchor: [1, -34],
    tooltipAnchor: [16, -28],
    shadowSize: [41, 41]
-  };
+ };
 
   /**
   * Returns a marker Object giving the user's position
@@ -61,7 +61,7 @@
        return null;
      });*/
      return map.draggableMarker;
-  };
+   };
   /**
   * Loads the map
   */
@@ -101,7 +101,7 @@
         // Show the map on the template
         //$scope.showMap = true; // add if needed like this in html: ng-if="showMap === true"
         return dfd.promise;
-    }*/
+      }*/
 
 
 
@@ -113,15 +113,15 @@
 
     var data = $scope.issues;
     $scope.map.markers = [defaultMarker($geolocation.position)];
-// If data array is not null, create a marker for each element and add it to map_markers
-if (data.length > 0) {
-  for (var i = 0; i < data.length; i++) {
-    var marker = {
-      lat: data[i].lat,
-      lng: data[i].lng,
-    };
-    $scope.map.markers.push(marker);
-  }
+    // If data array is not null, create a marker for each element and add it to map_markers
+    if (data.length > 0) {
+      for (var i = 0; i < data.length; i++) {
+        var marker = {
+          lat: data[i].lat,
+          lng: data[i].lng,
+        };
+        $scope.map.markers.push(marker);
+      }
     // Set the view to encompase all the markers
     //fitBounds - Sets a map view that contains the given geographical bounds with the maximum zoom level possible.
     $scope.map.fitBounds($scope.map.markers);
@@ -131,6 +131,13 @@ if (data.length > 0) {
     $scope.map.setView([$scope.map.markers[0].lat, $scope.map.markers[0].lng], 15);
   }
 }
+
+//starting to show issues in map - not finished
+    $scope.$on('', function () {
+          if ($scope.issues) {
+                insertIssuesData();
+            }
+    });
 
 
 
@@ -179,4 +186,4 @@ map.defaults = {
         name: 'Place Pestalozzi'
       }
       ];*/
-});
+    });

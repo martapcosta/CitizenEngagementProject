@@ -50,19 +50,45 @@ return service;
 
   });
 
-  // Get comments of a given issueId
-  $scope.getComments = function(issueId) {
-
-    return issueId;
-  /*  $http ({
-        method: 'GET',
-        url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/' + issueId + '/comments'
-    }).then(function(res) {
-      return res.data;
-    });*/
-  };
 
 });
 
+/**
+ * Controller to manage an issue data and show it to the user.
+ */
+angular.module('app').controller('DetailsCtrl', function ($rootScope, $scope, $state, issue, store) {
 
+    // Disable the swipe menu for this view.
+    $scope.$on('$ionicView.beforeEnter', function () {
+        $rootScope.enableLeft = false;
+    });
+
+    // Reload the data when a new comment is posted.
+    $scope.$on('newComment', function (e, data) {
+        $scope.issue = data;
+    });
+
+    /**
+     * Register the showIssueOnMal function to the scope.
+     * This function saves the localisation of the issue in the LocalStorage in order to pass them to the app.details.map view.
+     */
+    $scope.showIssueOnMap = function () {
+        store.set('issue', {
+            lat: $scope.issue.lat,
+            lng: $scope.issue.lng,
+            description: $scope.issue.description
+        });
+        $state.go('app.details.map');
+    };
+
+    // Loads the issue's data in the view or show an error message if this fails.
+    Loading.show(messages.loading);
+    if (issue) {
+        $scope.issue = issue;
+        Loading.hide();
+    } else {
+        $scope.error = {msg: messages.error_issue};
+        Loading.hide();
+    }
+});
 
