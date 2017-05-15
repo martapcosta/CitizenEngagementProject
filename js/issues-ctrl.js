@@ -11,6 +11,10 @@
     });
   };
 
+  service.getIssue = function(issueId) {
+    return getIssueData(issueId);
+  };
+
 
   function fetchAllIssues(page, items) {
   page = page || 1; // Start from page 1
@@ -34,22 +38,18 @@
     }
     return items;
   });
-}
+};
 
 /**
 * Get data for a given issue
 */
 function getIssueData(id) {
-  var dfd = $q.defer();
-    $http({
-      method: 'GET',
-      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/' + id
-    }).success(function (data) {
-      dfd.resolve(data);
-    }).error(function () {
-      dfd.resolve(null);
-    });
-    return dfd.promise;
+  return $http({
+    method: 'GET',
+    url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/' + id
+  }).then(function(res) {
+    return res.data;
+  });
 }
 return service;
 });
@@ -67,17 +67,24 @@ return service;
     /**
      * goToDetails function in the scope.
      */
-    $scope.goToDetails = function (issueId) {
-        $state.go('issues.details', {issueId: issueId});
-    };
+     /*$scope.goToDetails = function (issueId) {
+      $state.go('issues.details', {issueId: issueId});
+    };*/
 
-});
+  });
 
 /**
- * Controller to manage an issue data and show it to the user.
+ * Controller to manage an issue data and show it
  */
- angular.module('app').controller('DetailsCtrl', function ($rootScope, $scope, $state, issue, store) {
+ angular.module('app').controller('DetailsCtrl', function (IssuesService,$stateParams,$rootScope, $scope, $state, store) {
 
+  var detailsCtrl = this;
+
+
+  var issueId = $stateParams.id;
+  IssuesService.getIssue(issueId).then(function(issue) {
+    detailsCtrl.issue = issue;
+  });
 
     // Reload the data when a new comment is posted.
     //$scope.$on('newComment', function (e, data) {

@@ -1,15 +1,15 @@
-   <div class="col-md-8 col-md-offset-2">
     <div class="row">
-      <div class="bg-primary text-center">
-        <h2 d="lastIssues">All Issues</h2>
-      </div>
-      <!--<h1>Welcome to {{ homePageCtrl.name }}</h1>-->
-      <!-- leaflet map -->
-      <div class="map-container" ng-controller="MapCtrl as map">
-       <leaflet width="100%" height="200px" 
-       lf-center="map.center"
-       defaults="map.defaults"
-       markers="map.markers">
+      <section class="col-md-6">
+        <div class="bg-primary text-center">
+          <h2 d="lastIssues">All Issues</h2>
+        </div>
+        <!--<h1>Welcome to {{ homePageCtrl.name }}</h1>-->
+        <!-- leaflet map -->
+        <div class="map-container" ng-controller="MapCtrl as map">
+         <leaflet width="100%" height="200px" 
+         lf-center="map.center"
+         defaults="map.defaults"
+         markers="map.markers">
        <!--not on this map but later we will need this
        <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button>--> 
      </leaflet>
@@ -18,8 +18,9 @@
    <input id="1" ng-model="word" class="form-control" type="text" name="search" placeholder="Search issues matching the specified text" required/>
    <div ng-controller="IssuesListCtrl as issuelistctrl" class="list-group">
     <!--<div ng-repeat="issue in issuelistctrl.issues | orderBy: '-createdAt' | limitTo: 10">-->
-    <div ng-repeat="issue in issuelistctrl.issues | filter:word">
-    <a ng-click="goToDetails(issue.id)" href="#" class="list-group-item list-group-item-action flex-column  align-items-start">
+
+    <div  ng-repeat="issue in issuelistctrl.issues | filter:word">
+      <a  ui-sref="issues.details({ id: issue.id })" ui-sref-active="active" class="list-group-item list-group-item-action flex-column  align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <small>{{issue.createdAt | date: "dd.MM.yyyy HH:mm"}}</small>
         </div>
@@ -29,5 +30,8 @@
       </a>
     </div>
   </div>
-</div>
+</section>
+    <section class="col-md-4 col-md-offset-2">
+  <div ui-view />
+</section>
 </div>
