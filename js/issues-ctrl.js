@@ -91,15 +91,20 @@ return service;
   var detailsCtrl = this;
 
   var issueId = $stateParams.id;
+
   IssuesService.getIssue(issueId).then(function(issue) {
     detailsCtrl.issue = issue;
-  });
-
-var issueTypeId = '58e3d8dd6fd0360011e01a92';
-//var issueTypeId = issueTypeHref.substr(issueTypeHref.lastIndexOf('/') + 1);
- IssuesService.getTypeData(issueTypeId).then(function(issuetype) {
+    var issueTypeHref = issue['issueTypeHref'];
+    // get the idType of issueTypeHref
+    var issueTypeId = issueTypeHref.substr(issueTypeHref.lastIndexOf('/') + 1);
+    IssuesService.getTypeData(issueTypeId).then(function(issuetype) {
     detailsCtrl.issuetype = issuetype;
   });
+
+  });
+
+
+
 
     // Reload the data when a new comment is posted.
     //$scope.$on('newComment', function (e, data) {

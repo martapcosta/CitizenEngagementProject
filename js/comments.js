@@ -19,13 +19,12 @@ service.addComment = function(comment, issueId){
     };
 
 /**
-* Order the comments by their createdAt property.
+* Order the comments by createdAt
 */
 service.orderComments = function (comments) {
     return $filter('orderBy')(comments, '-createdAt', true);
     
     };
-
 
 
 /**
@@ -36,14 +35,13 @@ app.controller('CommentsCtrl', function ($rootScope, $scope, CommentsService) {
     $scope.comment = null;
     
     /**
-     * Adds a comment by calling the addComment function from the CommentsService.
+     * Adds a comment
     */
     $scope.addComment = function () {
         CommentsService
                 .addComment($scope.comment, $scope.issue.id)
                 .success(function (data) {
                     $scope.comment = null;
-                    //$scope.$emit('newComment', DataManager.orderData(data));
                 })
                 .error(function () {
                     $rootScope.toast.show("Error adding comment");
