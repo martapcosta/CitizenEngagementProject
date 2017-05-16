@@ -9,7 +9,7 @@
        markers="map.draggableMarker">
     </leaflet>
     <button class='col-xs-12 col-md-8 form-group' type="submit" class="btn"
-    ng-click="updateLocation(locationPoint())">Save location</button>
+    ng-click="updateLocation(map.draggableMarker)">Save location</button>
   </div>
 <!-- end of leaflet map -->
     <div class='col-md-8' ng-if="newIssue.locationOK == true">
