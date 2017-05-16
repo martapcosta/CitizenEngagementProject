@@ -72,7 +72,7 @@ return service;
 });
 
 
- angular.module('app').controller('IssuesListCtrl', function($http,$state,IssuesService,$scope,AuthService) {
+ angular.module('app').controller('IssuesListCtrl', function($http,$state,IssuesService,$scope,$location,$anchorScroll,AuthService) {
 
   var IssuesListCtrl = this;
 
@@ -80,6 +80,10 @@ return service;
     IssuesListCtrl.issues = issues;
   });
 
+$scope.goUp = function () {
+                $location.hash('up');
+                $anchorScroll();
+            }
 
 });
 

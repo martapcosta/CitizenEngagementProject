@@ -53,16 +53,16 @@
         <!--<div class="issue-error" ng-if="error">
             <p>{{error.msg}}</p>
         </div>-->
-    </div>
-    <div align-title="left" class="details-footer" ng-controller="CommentsCtrl" ng-if="!error">
+    <div align-title="left" class="panel-footer" ng-controller="CommentsCtrl" ng-if="!error">
     <form class="item-input-inset" name="commentForm">
             <label class="item-input-wrapper">
                 <input type="text" placeholder="New Comment" maxlength="140" required ng-model="comment">
             </label>
-              <button class="btn btn-danger navbar-btn">
+              <button class="btn btn-danger pull-right">
         <span class="glyphicon glyphicon-send" ng-click="addComment()"
             ng-disabled="commentForm.$invalid"></span>
         Send!
       </button>
     </form>
+</div>
 </div>
