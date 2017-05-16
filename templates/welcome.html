@@ -1,4 +1,4 @@
-<div id="page-top">
+<div ng-controller="WelcomePageController as welcome" id="page-top">
 	<section class="bg-primary" id="about">
 		<div class="container">
 			<div class="row">
@@ -10,8 +10,7 @@
 						Citizen Engagement application is an independent website that help you to report existing problems in the city of Yverdon-les-Bains.
 
 						All you have to do is to register you, identify the location of your issue and describe it.</p>
-						<!-- doesn't work-->
-						<a href="/#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+						<a ng-click="scrollTo('services')" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
 					</div>
 				</div>
 			</div>
@@ -22,10 +21,13 @@
 					<div class="col-lg-12 text-center">
 						<h2 class="section-heading">How do I make a report?</h2>
 						<hr class="primary">
+						<a ng-click="scrollTo('portfolio')" class="center page-scroll btn btn-primary">Learn more!</a>
 					</div>
+
 				</div>
 			</div>
 			<div class="container">
+
 				<div class="row">
 					<div class="col-lg-3 col-md-6 text-center">
 						<div class="service-box">
@@ -52,7 +54,7 @@
 						<div class="service-box">
 							<i class="glyphicon glyphicon-comment"></i>
 							<h3>Participate</h3>
-							<p class="text-muted">Comment in reported issues!</p>
+							<p class="text-muted">Comment on reported issues!</p>
 						</div>
 					</div>
 				</div>
@@ -62,87 +64,87 @@
 			<div class="container-fluid">
 				<div class="row no-gutter">
 					<div class="col-lg-4 col-sm-6 portfolio-box">
-							<img src="img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
-							<div class="portfolio-box-caption">
-								<div class="portfolio-box-caption-content">
-									<div class="project-category text-faded">
-										1
-									</div>
-									<div class="project-name">
-										Sign In
-									</div>
+						<img src="img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
+						<div class="portfolio-box-caption">
+							<div class="portfolio-box-caption-content">
+								<div class="project-category text-faded">
+									1
+								</div>
+								<div class="project-name">
+									Sign In
 								</div>
 							</div>
+						</div>
 					</div>
 					<div class="col-lg-4 col-sm-6 portfolio-box">
-							<img src="img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
-							<div class="portfolio-box-caption">
-								<div class="portfolio-box-caption-content">
-									<div class="project-category text-faded">
-										2
-									</div>
-									<div class="project-name">
-										See Last Issues
-									</div>
+						<img src="img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
+						<div class="portfolio-box-caption">
+							<div class="portfolio-box-caption-content">
+								<div class="project-category text-faded">
+									2
+								</div>
+								<div class="project-name">
+									See Last Issues
 								</div>
 							</div>
+						</div>
 					</div>
 					<div class="col-lg-4 col-sm-6 portfolio-box">
-							<img src="img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
-							<div class="portfolio-box-caption">
-								<div class="portfolio-box-caption-content">
-									<div class="project-category text-faded">
-										3
-									</div>
-									<div class="project-name">
-										Report an Issue
-									</div>
+						<img src="img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
+						<div class="portfolio-box-caption">
+							<div class="portfolio-box-caption-content">
+								<div class="project-category text-faded">
+									3
+								</div>
+								<div class="project-name">
+									Report an Issue
 								</div>
 							</div>
+						</div>
 					</div>
 					<div class="col-lg-4 col-sm-6 portfolio-box">
-							<img src="img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
-							<div class="portfolio-box-caption">
-								<div class="portfolio-box-caption-content">
-									<div class="project-category text-faded">
-										4
-									</div>
-									<div class="project-name">
-										See all issues
-									</div>
+						<img src="img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
+						<div class="portfolio-box-caption">
+							<div class="portfolio-box-caption-content">
+								<div class="project-category text-faded">
+									4
+								</div>
+								<div class="project-name">
+									See all issues
 								</div>
 							</div>
+						</div>
 					</div>
 					<div class="col-lg-4 col-sm-6 portfolio-box">
-							<img src="img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
-							<div class="portfolio-box-caption">
-								<div class="portfolio-box-caption-content">
-									<div class="project-category text-faded">
-										5
-									</div>
-									<div class="project-name">
-										Comment
-									</div>
+						<img src="img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
+						<div class="portfolio-box-caption">
+							<div class="portfolio-box-caption-content">
+								<div class="project-category text-faded">
+									5
+								</div>
+								<div class="project-name">
+									Comment
 								</div>
 							</div>
+						</div>
 					</div>
 					<div class="col-lg-4 col-sm-6 portfolio-box">
-							<img src="img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
-							<div class="portfolio-box-caption">
-								<div class="portfolio-box-caption-content">
-									<div class="project-category text-faded">
-										6
-									</div>
-									<div class="project-name">
-										Search for an issue
-									</div>
+						<img src="img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
+						<div class="portfolio-box-caption">
+							<div class="portfolio-box-caption-content">
+								<div class="project-category text-faded">
+									6
+								</div>
+								<div class="project-name">
+									Search for an issue
 								</div>
 							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		<aside ng-controller="WelcomePageController as welcome" ng-show="welcome.isActive()" class="bg-dark">
+		<aside ng-show="welcome.isActive()" class="bg-dark">
 			<div class="container text-center">
 				<div class="call-to-action">
 					<h2>Register for Free Now!</h2>
@@ -151,4 +153,4 @@
 				</div>
 			</div>
 		</aside>
-</div>
+	</div>
