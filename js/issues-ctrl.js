@@ -16,6 +16,10 @@
   };
 
 
+  service.getTypeData = function(idType) {
+    return getIssueType(idType);
+  };
+
   function fetchAllIssues(page, items) {
   page = page || 1; // Start from page 1
   items = items || [];
@@ -51,6 +55,19 @@ function getIssueData(id) {
     return res.data;
   });
 }
+
+/**
+* Get issue type data
+*/
+function getIssueType(idType) {
+  return $http({
+    method: 'GET',
+    url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issueTypes/' + idType
+  }).then(function(res) {
+    return res.data;
+  });
+}
+
 return service;
 });
 
@@ -61,17 +78,10 @@ return service;
 
   IssuesService.getAllIssues().then(function(issues) {
     IssuesListCtrl.issues = issues;
-
   });
 
-    /**
-     * goToDetails function in the scope.
-     */
-     /*$scope.goToDetails = function (issueId) {
-      $state.go('issues.details', {issueId: issueId});
-    };*/
 
-  });
+});
 
 /**
  * Controller to manage an issue data and show it
@@ -80,10 +90,15 @@ return service;
 
   var detailsCtrl = this;
 
-
   var issueId = $stateParams.id;
   IssuesService.getIssue(issueId).then(function(issue) {
     detailsCtrl.issue = issue;
+  });
+
+var issueTypeId = '58e3d8dd6fd0360011e01a92';
+//var issueTypeId = issueTypeHref.substr(issueTypeHref.lastIndexOf('/') + 1);
+ IssuesService.getTypeData(issueTypeId).then(function(issuetype) {
+    detailsCtrl.issuetype = issuetype;
   });
 
     // Reload the data when a new comment is posted.

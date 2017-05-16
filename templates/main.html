@@ -31,8 +31,7 @@
         <input id="1" ng-model="word" class="form-control" type="text" name="search" placeholder="Search issues matching the specified text" required/>
   <div ng-controller="IssuesListCtrl as issuelistctrl" class="list-group">
     <div ng-repeat="issue in issuelistctrl.issues | limitTo: 10 | filter:word">
-    <!--<div ng-repeat="issue in issuelistctrl.issues | orderBy: '-time' | limitTo: 10">-->
-      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+      <a ui-sref="issues.details({ id: issue.id })" ui-sref-active="active" class="list-group-item list-group-item-action flex-column">
         <div class="d-flex w-100 justify-content-between">
           <small>{{issue.createdAt | date: "dd.MM.yyyy HH:mm"}}</small>
         </div>
@@ -41,6 +40,9 @@
         <!--<span><i class="glyphicon glyphicon-comment"> </i> {{issue.ncomments}}</span>-->
       </a>
     </div>
+  </div>
+  <div>
+  <a ui-sref="issues" class="btn btn-default btn-xl sr-button">Go to all issues</a>
   </div>
 </div>
 </div>           

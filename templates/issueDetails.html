@@ -1,37 +1,42 @@
-
-    <div ng-controller='DetailsCtrl as details'>
-        <div  ng-if="!error">
-            <div class="row">
-                <!--<div class="col tags">
+<div ng-controller='DetailsCtrl as details'>
+    <div  class="bg-primary text-center">
+        <div class="bg-primary text-center">
+          <h2>Selected Issue Details</h2>
+      </div>
+        <!--<div class="row">
+                <div class="col tags">
                     <span ng-repeat="tag in issue.tags" ng-click="removeTag(tag)">{{tag}}<i class="icon"></i></span>
                     <span class="no-tag" ng-if="issue.tags.length < 1">No tag</span>
-                </div>-->
-            </div>
-            <div class="row">
+                </div>
+            </div>-->
+        </div>
+        <div class="panel-body" id="issue-details">
+            <div class="list-group-item list-group-item-action flex-column row">
                 <div class="col">
-                    <h1>Creation</h1>
+                    <h3>Creation</h3>
                     <p>{{details.issue.createdAt| date:'dd MMM yyyy'}}</p>
                 </div>
                 <div class="col">
-                    <h1>Last modification</h1>
+                    <h3>Last modification</h3>
                     <p>{{details.issue.updatedAt| date:'dd MMM yyyy'}}</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="list-group-item list-group-item-action flex-column row">
                 <div class="col">
-                    <h1>Status</h1>
+                    <h3>Status</h3>
                     <p>{{details.issue.state}}</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="list-group-item list-group-item-action flex-column row">
                 <div class="col issue-type">
-                    <h1>Type du problème</h1>
-                    <!--<p>{{details.issue.issueType.name}}</p>-->
+                    <h3>Issue Type</h3>
+                    <p>{{details.issuetype.name}}</p>
+                    <p>{{details.issuetype.description}}</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="list-group-item list-group-item-action flex-column row">
                 <div class="col">
-                    <h1>Description</h1>
+                    <h3>Description</h3>
                     <p>{{details.issue.description}}</p>
                 </div>
             </div>
