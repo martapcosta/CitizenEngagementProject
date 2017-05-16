@@ -61,6 +61,9 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, $lo
   var newIssue = this;
   newIssue.issue = {};
   newIssue.locationOK = false;
+  newIssue.location = {};
+  newIssue.location.coordinates = [];
+  newIssue.lacation.type = "Point";
 
   NewIssuesService.getAllIssuesTypes().then(function(issueTypes)
   {
@@ -70,7 +73,9 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, $lo
   $scope.updateLocation = function(marker)
   {
     //newIssue.issue.location = marker;
-    $log.info(marker);
+    newIssue.issue.location.coordinates.push(marker.lat);
+    newIssue.issue.location.coordinates.push(marker.lng);
+    $log.info(newIssue.issue.location);
     newIssue.locationOK = true;
   }
 
