@@ -36,7 +36,41 @@
     zoom: 15
   };
 
+  var draggableMarker = {
+    // These are the coordinates for the center of Yverdon-les-Bains
+    lat: 46.778474,
+    lng: 6.641183,
+    focus: true,
+    icon: defaultIcon,
+    message: "Hey, drag me if you want",
+    draggable: true
+  };
+
   angular.extend($scope, {
+    yverdon: {
+      lat: 46.778474,
+      lng: 6.641183,
+      zoom: 4,
+    },
+    markers: {
+      draggableMarker: angular.copy(draggableMarker)
+    },
+    position: {
+      lat: 46.778474,
+      lng: 6.641183
+    },
+    events: { // or just {} //all events
+      markers:{
+        enable: [ 'dragend' ]
+      }
+    }
+  });
+
+  $scope.$on("leafletDirectiveMarker.dragend", function(event, args){
+                $scope.position.lat = args.model.lat;
+                $scope.position.lng = args.model.lng;
+            });
+  /*angular.extend($scope, {
     draggableMarker: {
       // These are the coordinates for the center of Yverdon-les-Bains
       lat: 46.778474,
@@ -45,7 +79,7 @@
       icon: defaultIcon,
       draggable: true
     }
-  });
+  });*/
     /*draggableMarker: {
     lat: map.center.lat,
     lng: map.center.lng,

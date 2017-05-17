@@ -4,12 +4,13 @@
   <div class="container" ng-controller="NewIssueCtrl as newIssue">
     <div class="map-container" ng-controller="MapCtrl as map">
      <leaflet width="100%" height="480px"
-       lf-center="map.center"
+       lf-center="yverdon"
+      event-broadcast="events"
        defaults="map.defaults"
-       markers="draggableMarker">
+       markers="markers">
     </leaflet>
     <button class='col-xs-12 col-md-8 form-group' type="submit" class="btn"
-    ng-click="newIssue.updateLocation(draggableMarker.lat, draggableMarker.lng)">Save location</button>
+    ng-click="newIssue.updateLocation(position.lat, position.lng)">Save location</button>
   </div>
 <!-- end of leaflet map -->
     <div class='col-md-8' ng-if="newIssue.locationOK == true">
