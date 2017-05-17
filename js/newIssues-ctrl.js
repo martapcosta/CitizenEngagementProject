@@ -1,7 +1,7 @@
 /**
  * News Issues Service
  */
- angular.module('app').factory('NewIssuesService', function($http,AuthService) {
+ angular.module('app').factory('NewIssuesService', function($http) {
 
   var service = {};
 
@@ -57,31 +57,32 @@ return service;
 
 
 
-angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, $log, $scope) {
+angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, AuthService, $http, $log, $state, $scope) {
   var newIssue = this;
   newIssue.issue = {};
   newIssue.locationOK = false;
-  newIssue.location = {};
-  newIssue.location.coordinates = [];
-  newIssue.lacation.type = "Point";
 
   NewIssuesService.getAllIssuesTypes().then(function(issueTypes)
   {
     newIssue.issueTypes = issueTypes;
   });
 
-  $scope.updateLocation = function(marker)
+  newIssue.updateLocation = function(lat, lng)
   {
     //newIssue.issue.location = marker;
-    newIssue.issue.location.coordinates.push(marker.lat);
-    newIssue.issue.location.coordinates.push(marker.lng);
-    $log.info(newIssue.issue.location);
+    newIssue.issue.location = {
+      "coordinates": [lat, lng],
+      "type": "Point"
+    };
+    //newIssue.issue.location.coordinates.push(marker.lat);
+    //newIssue.issue.location.coordinates.push(marker.lng);
+    $log.info(newIssue.issue.location.coordinates);
     newIssue.locationOK = true;
   }
 
   newIssue.createNewIssue = function()
   {
-    delete createNewIssue.error;
+    delete newIssue.error;
     $http({
       method: 'POST',
       url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues',
@@ -89,7 +90,7 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, $lo
     }).then(function(res) {
       $state.go('home');
     }).catch(function(error) {
-      login.error = "Error while trying to create a new issue";
+      newIssue.error = "Error while trying to create a new issue";
       $log.error(error);
     })
   };

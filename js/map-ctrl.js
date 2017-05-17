@@ -36,7 +36,17 @@
     zoom: 15
   };
 
-  map.draggableMarker = [{
+  angular.extend($scope, {
+    draggableMarker: {
+      // These are the coordinates for the center of Yverdon-les-Bains
+      lat: 46.778474,
+      lng: 6.641183,
+      zoom: 4,
+      icon: defaultIcon,
+      draggable: true
+    }
+  });
+    /*draggableMarker: {
     lat: map.center.lat,
     lng: map.center.lng,
     icon: defaultIcon,
@@ -47,21 +57,8 @@
         noHide: true
       }
     }
-  }];
+  }];*/
 
-  $scope.locationPoint = function()
-  {
-     /*var location = {};
-     map.draggableMarker.toGeoJSON().then(function(res) {
-       location = res.features.geometry;
-       return location;
-     }).catch(function(error) {
-       login.error = "Error while trying to create a new issue";
-       $log.error(error);
-       return null;
-     });*/
-     return map.draggableMarker;
-   };
   /**
   * Loads the map
   */
