@@ -28,11 +28,12 @@
     method: 'POST',
     url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/searches',
     data: { "state": 
-    {"$in": [ "new", "inProgress" ]}
-  },
-  params: {
-    page: page
-  } 
+    {"$in": [ "new", "inProgress","rejected", "resolved" ]}
+    },
+    params: {
+      page: page,
+      pageSize: 50
+    } 
 }).then(function(res) {
   if (res.data.length) {
       // If there are any items, add them
@@ -80,6 +81,7 @@ return service;
     IssuesListCtrl.issues = issues;
   });
 
+// Goes up in page - used in issues template when clicking to issues details
 $scope.goUp = function () {
                 $location.hash('up');
                 $anchorScroll();
@@ -97,16 +99,16 @@ $scope.goUp = function () {
   var issueId = $stateParams.id;
 
   IssuesService.getIssue(issueId).then(function(issue) {
-    detailsCtrl.issue = issue;
+    
     var issueTypeHref = issue['issueTypeHref'];
     // get the idType of issueTypeHref
     var issueTypeId = issueTypeHref.substr(issueTypeHref.lastIndexOf('/') + 1);
     IssuesService.getTypeData(issueTypeId).then(function(issuetype) {
     detailsCtrl.issuetype = issuetype;
-  });
+    detailsCtrl.issue = issue;
+    });
 
   });
-
 
 
 
@@ -116,7 +118,7 @@ $scope.goUp = function () {
     //});
 
     /**
-     * Register the showIssueOnMal function to the scope.
+     * Register the showIssueOnMap function to the scope.
      * This function saves the localisation of the issue in the LocalStorage in order to pass them to the app.details.map view.
      */
      /*$scope.showIssueOnMap = function () {
