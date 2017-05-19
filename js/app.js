@@ -6,7 +6,8 @@
   'angular-storage',
   'ngGeolocation',
   'leaflet-directive',
-  'ngTagsInput'
+  'ngTagsInput',
+  'ui.bootstrap'
   ]);
 
 
@@ -49,18 +50,33 @@
     templateUrl: "./templates/register.html",
     controller: 'RegisterCtrl as register'
   });
-  $stateProvider.state('issues.details', {
+  /*$stateProvider.state('issues.details', {
     url: "/:id",
-    /*resolve: {
-      // Get the issue which information are displayed on the detail screen.
-      issue: function ($stateParams, IssuesService) {
-        return IssuesService.getIssueData($stateParams.issueId);
-      }
-    },*/
     templateUrl: "./templates/issueDetails.html",
     controller: 'DetailsCtrl as details'
+  });*/
+  $stateProvider.state('issues.details', {
+    url: "/:id",
+    onEnter: function($modal){
+      $modal.open({
+        /*template: [
+        '<div class="modal-content">',
+          '<div class="modal-header">',
+            '<h3 class="modal-title">Regulamin</h3>',
+          '</div>',
+          '<div class="modal-body">',
+          '$1. Give us all your money!',
+          '</div>',
+          '<div class="modal-footer">',
+            '<button class="btn btn-primary" ng-click="$dismiss()">OK</button>',
+          '</div>',
+        '</div>'
+        ].join('')*/
+        templateUrl: "./templates/issueDetails.html",
+        controller: 'DetailsCtrl as details'
+      });
+    }
   });
-
 
   $urlRouterProvider.otherwise(function ($injector) {
     $injector.get('$state').go('home');

@@ -10,15 +10,13 @@
          lf-center="map.center"
          defaults="map.defaults"
          markers="map.markers">
-       <!--not on this map but later we will need this
-       <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button>--> 
      </leaflet>
    </div> 
    <!-- end of leaflet map -->
    <input id="1" ng-model="word" class="form-control" type="text" name="search" placeholder="Search issues matching the specified text" required/>
    <div ng-controller="IssuesListCtrl as issuelistctrl" class="list-group">
     <div  ng-repeat="issue in issuelistctrl.issues | filter:word">
-      <a ng-click="goUp()" ui-sref="issues.details({ id: issue.id })" ui-sref-active="active" class="list-group-item list-group-item-action flex-column">
+      <a ui-sref="issues.details({ id: issue.id })" ui-sref-active="active" class="list-group-item list-group-item-action flex-column">
         <div class="justify-content-between">
           <small>{{issue.createdAt | date: "dd.MM.yyyy HH:mm"}}</small>
         </div>

@@ -50,7 +50,7 @@
     yverdon: {
       lat: 46.778474,
       lng: 6.641183,
-      zoom: 4,
+      zoom: 100,
     },
     markers: {
       draggableMarker: angular.copy(draggableMarker)

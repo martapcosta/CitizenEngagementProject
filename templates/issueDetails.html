@@ -1,10 +1,10 @@
-<div ng-controller='DetailsCtrl as details'>
+<div class="modal-content" ng-controller='DetailsCtrl as details'>
 	<div  class="bg-primary text-center">
-		<div class="bg-primary text-center">
-			<h2>Selected Issue Details</h2>
+		<div class="modal-header bg-primary text-center">
+			<h2 class="modal-title">Selected Issue Details</h2>
 		</div>
 	</div>
-	<div class="panel-body" id="issue-details">
+	<div class="modal-body" id="issue-details">
 		<div class="list-group-item list-group-item-action flex-column row">
 			<div class="col">
 				<h3>Creation</h3>
@@ -34,14 +34,14 @@
 				<p>{{details.issue.description}}</p>
 			</div>
 		</div>
-			<div class="list-group-item list-group-item-action flex-column row">
-					<div class="col">
+		<div class="list-group-item list-group-item-action flex-column row">
+			<div class="col">
 				<h3>Tags</h3>
 				<span class="tag-list btn" ng-repeat="tag in details.issue.tags">{{tag}}<i class="glyphicon glyphicon-tags"></i></span>
 				<!--ng-click="removeTag(tag)"-->
 				<span class="no-tag" ng-if="issue.tags.length < 1">No tag</span>
 			</div>
-			</div>
+		</div>
 		<div class="list-group-item list-group-item-action flex-column row comments">
 			<h3>{{details.issue.comments.length}} Comment{{details.issue.comments.length > 1 ? 's' : ''}}</h3>
 			<div class="card" id="{{comment.id}}" ng-repeat="comment in issue.comments">
@@ -52,12 +52,13 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="$dismiss()">Cancel</button>
+	</div>
 								<!--<div class="issue-error" ng-if="error">
 												<p>{{error.msg}}</p>
 											</div>-->
-											<div align-title="left" class="panel-footer" ng-controller="CommentsCtrl" ng-if="!error">
-
-
+											<!--<div align-title="left" class="panel-footer" ng-controller="CommentsCtrl" ng-if="!error">
 												<form class="item-input-inset" name="commentForm">
 													<label class="item-input-wrapper">
 														<input type="text" placeholder="New Comment" maxlength="140" required ng-model="comment">
@@ -68,5 +69,5 @@
 														Send!
 													</button>
 												</form>
-											</div>
-										</div>
+											</div>-->
+</div>

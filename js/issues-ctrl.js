@@ -112,6 +112,7 @@ $scope.goUp = function () {
 
 
 
+
     // Reload the data when a new comment is posted.
     //$scope.$on('newComment', function (e, data) {
     //  $scope.issue = data;
