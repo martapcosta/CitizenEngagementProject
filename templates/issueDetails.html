@@ -17,17 +17,17 @@
 		<div class="list-group-item list-group-item-action flex-column row">
 			<div class="col">
 				<h3>Creation</h3>
-				<p>{{details.issue.createdAt| date:'dd MMM yyyy'}}</p>
+				<p>{{issue.createdAt| date:'dd MMM yyyy'}}</p>
 			</div>
 			<div class="col">
 				<h3>Last modification</h3>
-				<p>{{details.issue.updatedAt| date:'dd MMM yyyy'}}</p>
+				<p>{{issue.updatedAt| date:'dd MMM yyyy'}}</p>
 			</div>
 		</div>
 		<div class="list-group-item list-group-item-action flex-column row">
 			<div class="col">
 				<h3>Status</h3>
-				<p>{{details.issue.state}}</p>
+				<p>{{issue.state}}</p>
 			</div>
 		</div>
 		<div class="list-group-item list-group-item-action flex-column row">
@@ -40,16 +40,16 @@
 		<div class="list-group-item list-group-item-action flex-column row">
 			<div class="col">
 				<h3>Description</h3>
-				<p>{{details.issue.description}}</p>
+				<p>{{issue.description}}</p>
 			</div>
 		</div>
 		<div class="list-group-item list-group-item-action flex-column row">
 			<div class="col">
 				<h3>Tags</h3>
-				<span class="tag-list btn" ng-repeat="tag in details.issue.tags">{{tag}}<i class="glyphicon glyphicon-tags"></i></span>
+				<span class="tag-list btn" ng-repeat="tag in issue.tags">{{tag}}<i class="glyphicon glyphicon-tags"></i></span>
 				<!--ng-click="removeTag(tag)"-->
 				<span class="no-tag" ng-if="issue.tags.length < 1">No tag</span>
-				<tags-input ng-model="details.issue.tags" use-strings="true"></tags-input>
+				<tags-input ng-model="issue.tags" use-strings="true"></tags-input>
 			</div>
 		</div>
 		<div class="list-group-item list-group-item-action flex-column row comments">
@@ -62,16 +62,19 @@
 	<div class="issue-error" ng-if="error">
 		<p>{{error.msg}}</p>
 	</div>
-	<div align-title="left" class="panel-footer" ng-controller="CommentsCtrl" ng-if="!error">
+	<div align-title="left" class="panel-footer" ng-controller="CommentsCtrl as commentsCtrl" ng-if="!error">
 		<form class="item-input-inset" name="commentForm">
 			<label class="item-input-wrapper">
-				<input type="text" placeholder="New Comment" maxlength="140" required ng-model="comment">
+				<input type="text" placeholder="New Comment" maxlength="140" required ng-model="comm">
 			</label>
 			<button class="btn btn-danger pull-right">
 				<span class="glyphicon glyphicon-send" ng-click="addComment()" ng-disabled="commentForm.$invalid">
 				</span>
 			Send!
 			</button>
+			<div class="alert alert-danger" ng-if="commentsCtrl.error">
+          {{commentsCtrl.error}}
+        </div>
 		</form>
 	</div>
 </div>

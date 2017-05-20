@@ -17,7 +17,7 @@ service.addComment = function(comment, issueId){
                 },
                 url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/' + issueId + '/comments'
             });    
-    };
+};
 
 /**
 * Order the comments by createdAt
@@ -33,19 +33,20 @@ service.orderComments = function (comments) {
  */
 app.controller('CommentsCtrl', function ($rootScope, $scope, CommentsService) {
     
-    //$scope.comm = null;
-    //var commentsCtrl = this;
+    $scope.comm = null;
+    var commentsCtrl = this;
+    delete commentsCtrl.error;
     /**
      * Adds a comment
     */
-    /*$scope.addComment = function () {
+    $scope.addComment = function () {
         CommentsService
-                .addComment($scope.comm, issueId)
+                .addComment($scope.comm, $scope.issue.id)
                 .success(function (data) {
                     $scope.comm = null;
                 })
                 .error(function () {
-                    $rootScope.toast.show("Error adding comment");
+                    commentsCtrl.error ="Error adding comment";
                 }); 
-    };*/ 
+    }; 
 });

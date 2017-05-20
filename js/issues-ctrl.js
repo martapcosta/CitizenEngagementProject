@@ -164,7 +164,7 @@ $scope.goUp = function () {
     var issueTypeId = issueTypeHref.substr(issueTypeHref.lastIndexOf('/') + 1);
     IssuesService.getTypeData(issueTypeId).then(function(issuetype) {
       detailsCtrl.issuetype = issuetype;
-      detailsCtrl.issue = issue;
+      $scope.issue = issue;
     
       IssuesService.getComments(issueId).then(function (comments) {
         var commentsArray =[];
