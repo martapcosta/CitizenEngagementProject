@@ -10,7 +10,7 @@
 </head>
 <body>
   <main class="container">
-
+    <div ng-controller="IssuesListCtrl as issuelistctrl" class="list-group">
     <div class="col-md-8 col-md-offset-2">
       <div class="row">
       <div class="bg-primary text-center">
@@ -19,18 +19,16 @@
         <!--<h1 ng-controller="LoginCtrl as login">Welcome {{ login.user.firstname }}</h1>-->
         <!-- leaflet map -->
         <div class="map-container" ng-controller="MapCtrl as map">
-         <leaflet width="100%" height="200px" 
-         lf-center="map.center"
+         <leaflet width="100%" height="200px"
+         lf-center="yverdon"
          defaults="map.defaults"
          markers="map.markers">
-       <!--not on this map but later we will need this
-       <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button>--> 
      </leaflet>
-   </div> 
+   </div>
    <!-- end of leaflet map -->
         <input id="1" ng-model="word" class="form-control" type="text" name="search" placeholder="Search issues matching the specified text" required/>
-  <div ng-controller="IssuesListCtrl as issuelistctrl" class="list-group">
-    <div ng-repeat="issue in issuelistctrl.issues | limitTo: 10 | filter:word">
+
+    <div ng-repeat="issue in issues | limitTo: 10 | filter:word">
       <a ui-sref="issues.details({ id: issue.id })" ui-sref-active="active" class="list-group-item list-group-item-action flex-column">
         <div class="d-flex w-100 justify-content-between">
           <small>{{issue.createdAt | date: "dd.MM.yyyy HH:mm"}}</small>
@@ -45,7 +43,7 @@
   <a ui-sref="issues" class="btn btn-default btn-xl sr-button">Go to all issues</a>
   </div>
 </div>
-</div>           
+</div>
 </main>
 <footer class="navbar navbar-inverse navbar-fixed-bottom">
   <div class="container">

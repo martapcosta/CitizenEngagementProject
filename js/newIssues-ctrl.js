@@ -71,7 +71,7 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, Aut
   {
     //newIssue.issue.location = marker;
     newIssue.issue.location = {
-      "coordinates": [lat, lng],
+      "coordinates": [lng, lat],
       "type": "Point"
     };
     //newIssue.issue.location.coordinates.push(marker.lat);
@@ -91,7 +91,7 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, Aut
       $state.go('home');
     }).catch(function(error) {
       newIssue.error = "Error while trying to create a new issue";
-      $log.error(error);
+      $log.error(newIssue.error);
     })
   };
 

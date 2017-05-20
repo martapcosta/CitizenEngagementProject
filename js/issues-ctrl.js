@@ -43,13 +43,13 @@ service.getIssue = function(issueId) {
   return $http({
     method: 'POST',
     url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/searches',
-    data: { "state": 
+    data: { "state":
     {"$in": [ "new", "inProgress","rejected", "resolved" ]}
     },
     params: {
       page: page,
       pageSize: 50
-    } 
+    }
 }).then(function(res) {
   if (res.data.length) {
       // If there are any items, add them
@@ -94,7 +94,8 @@ return service;
   var IssuesListCtrl = this;
 
   IssuesService.getAllIssues().then(function(issues) {
-    IssuesListCtrl.issues = issues;
+    $scope.issues = issues;
+    $scope.$broadcast('dataloaded');
   });
 
 // Goes up in page - used in issues template when clicking to issues details
@@ -115,7 +116,7 @@ $scope.goUp = function () {
   var issueId = $stateParams.id;
 
   IssuesService.getIssue(issueId).then(function(issue) {
-    
+
     var issueTypeHref = issue['issueTypeHref'];
     // get the idType of issueTypeHref
     var issueTypeId = issueTypeHref.substr(issueTypeHref.lastIndexOf('/') + 1);
@@ -151,4 +152,3 @@ $scope.goUp = function () {
     };*/
 
   });
-
