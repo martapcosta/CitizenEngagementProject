@@ -1,12 +1,11 @@
 <div class="modal-content" ng-controller='DetailsCtrl as details'>
-
- <!-- leaflet map -->
-        <div class="map-container" ng-controller="MapCtrl as map">
+ 	<!-- leaflet map -->
+    <div class="map-container" ng-controller="MapCtrl as map">
          <leaflet width="100%" height="200px" 
-         lf-center="map.center"
-         defaults="map.defaults"
-         markers="map.markers">
-     </leaflet>
+         	lf-center="map.center"
+         	defaults="map.defaults"
+         	markers="map.markers">
+     	</leaflet>
    </div> 
    <!-- end of leaflet map -->
 	<div  class="bg-primary text-center">
@@ -50,34 +49,32 @@
 				<span class="tag-list btn" ng-repeat="tag in details.issue.tags">{{tag}}<i class="glyphicon glyphicon-tags"></i></span>
 				<!--ng-click="removeTag(tag)"-->
 				<span class="no-tag" ng-if="issue.tags.length < 1">No tag</span>
+				<tags-input ng-model="details.issue.tags" use-strings="true"></tags-input>
 			</div>
 		</div>
 		<div class="list-group-item list-group-item-action flex-column row comments">
-			<h3>{{details.issue.comments.length}} Comment{{details.issue.comments.length > 1 ? 's' : ''}}</h3>
-			<div class="card" id="{{comment.id}}" ng-repeat="comment in issue.comments">
+			<!--<h3>{{details.comments.length}} Comment{{details.comments.length > 1 ? 's' : ''}}</h3>-->
+			<div class="card" id="{{comment.id}}" ng-repeat="comment in details.comments">
 				<div>{{comment.text}}</div>
 				<div>
-					<span>{{comment.author.name}}, le {{comment.postedOn| date: 'dd MMM yyyy'}}.</span>
+					<span>{{comment.authorHref}}, at {{comment.createdAt| date: 'dd MMM yyyy'}}.</span>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="modal-footer">
-	<button class="btn btn-primary" ng-click="$dismiss()">Cancel</button>
+	<div class="issue-error" ng-if="error">
+		<p>{{error.msg}}</p>
 	</div>
-								<!--<div class="issue-error" ng-if="error">
-												<p>{{error.msg}}</p>
-											</div>-->
-											<!--<div align-title="left" class="panel-footer" ng-controller="CommentsCtrl" ng-if="!error">
-												<form class="item-input-inset" name="commentForm">
-													<label class="item-input-wrapper">
-														<input type="text" placeholder="New Comment" maxlength="140" required ng-model="comment">
-													</label>
-													<button class="btn btn-danger pull-right">
-														<span class="glyphicon glyphicon-send" ng-click="addComment()"
-														ng-disabled="commentForm.$invalid"></span>
-														Send!
-													</button>
-												</form>
-											</div>-->
+	<!--<div align-title="left" class="panel-footer" ng-controller="CommentsCtrl" ng-if="!error">
+		<form class="item-input-inset" name="commentForm">
+			<label class="item-input-wrapper">
+				<input type="text" placeholder="New Comment" maxlength="140" required ng-model="comment">
+			</label>
+			<button class="btn btn-danger pull-right">
+				<span class="glyphicon glyphicon-send" ng-click="addComment()" ng-disabled="commentForm.$invalid">
+				</span>
+			Send!
+			</button>
+		</form>
+	</div>-->
 </div>

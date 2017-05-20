@@ -5,15 +5,31 @@
 
   var service = {};
 
+/**
+* Gets comments from a given issue.
+*/
+service.getComments = function(issueId){
+    return $http({
+                method: 'GET',
+                url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/' + issueId + '/comments'
+            });    
+    };
+
+/**
+* Gets All issues
+*/
   service.getAllIssues = function() {
     return fetchAllIssues().then(function(issues) {
       return issues;
     });
   };
 
-  service.getIssue = function(issueId) {
-    return getIssueData(issueId);
-  };
+/**
+* Gets given issue data 
+*/
+service.getIssue = function(issueId) {
+   return getIssueData(issueId);
+};
 
 
   service.getTypeData = function(idType) {
@@ -106,11 +122,14 @@ $scope.goUp = function () {
     IssuesService.getTypeData(issueTypeId).then(function(issuetype) {
     detailsCtrl.issuetype = issuetype;
     detailsCtrl.issue = issue;
+    
+    IssuesService.getComments(issueId).then(function (comments) {
+       detailsCtrl.comments = comments;
+       console.log(comments);
+      });
     });
 
   });
-
-
 
 
     // Reload the data when a new comment is posted.

@@ -59,19 +59,6 @@
     url: "/:id",
     onEnter: function($modal){
       $modal.open({
-        /*template: [
-        '<div class="modal-content">',
-          '<div class="modal-header">',
-            '<h3 class="modal-title">Regulamin</h3>',
-          '</div>',
-          '<div class="modal-body">',
-          '$1. Give us all your money!',
-          '</div>',
-          '<div class="modal-footer">',
-            '<button class="btn btn-primary" ng-click="$dismiss()">OK</button>',
-          '</div>',
-        '</div>'
-        ].join('')*/
         templateUrl: "./templates/issueDetails.html",
         controller: 'DetailsCtrl as details'
       });

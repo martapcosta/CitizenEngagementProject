@@ -1,9 +1,10 @@
 /**
  * CommentsService.
  */
-app.service('CommentsService', function ($http, $filter) {
+app.service('CommentsService', function ($http, AuthService,$filter) {
     
 var service = {};
+
 
 /**
 * Adds a comment to the given issue.
@@ -28,23 +29,23 @@ service.orderComments = function (comments) {
 
 
 /**
- * The controller managing issues comments
+ * Controller managing issues comments
  */
 app.controller('CommentsCtrl', function ($rootScope, $scope, CommentsService) {
     
-    $scope.comment = null;
-    
+    //$scope.comm = null;
+    //var commentsCtrl = this;
     /**
      * Adds a comment
     */
-    $scope.addComment = function () {
+    /*$scope.addComment = function () {
         CommentsService
-                .addComment($scope.comment, $scope.issue.id)
+                .addComment($scope.comm, issueId)
                 .success(function (data) {
-                    $scope.comment = null;
+                    $scope.comm = null;
                 })
                 .error(function () {
                     $rootScope.toast.show("Error adding comment");
-                });
-    };
+                }); 
+    };*/ 
 });
