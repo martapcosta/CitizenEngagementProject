@@ -11,9 +11,10 @@
      defaults="map.defaults"
      markers="markers">
    </leaflet>
+   <button class='btn btn-danger form-group pull-left' type="submit" ng-click="newIssue.updateLocation(position.lat, position.lng)">Save Location</button>
  </div>
  <!-- end of leaflet map -->
- <button class='btn btn-danger form-group pull-left' type="submit" ng-click="newIssue.updateLocation(position.lat, position.lng)">Save Location</button>
+ 
  <div class='col-md-6' ng-if="newIssue.locationOK == true">
    <div><h3 class="col-md-8 col-xs-12">Other details...</h3></div>
    <form name="form" ng-submit="newIssue.createNewIssue()" role="form">
