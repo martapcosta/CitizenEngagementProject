@@ -54,7 +54,7 @@
 		</div>
 		<div class="list-group-item list-group-item-action flex-column row comments">
 			<h3>{{details.comments.length}} Comment{{details.comments.length > 1 ? 's' : ''}}</h3>
-			<div class="card" id="{{comment.id}}" ng-repeat="comment in details.comments">
+			<div class="card" ng-repeat="comment in details.comments">
 				<div><q>{{comment.text}}</q><small>posted by {{comment.name}}, on the {{comment.createdAt| date: 'dd MMM yyyy'}}.</small></div>
 			</div>
 		</div>

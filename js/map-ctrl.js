@@ -1,7 +1,7 @@
 /**
  * Angular Controller for handling the map on the page
  */
-angular.module("app").controller("MapCtrl", function($scope, $geolocation){
+angular.module("app").controller("MapCtrl", function($scope, $rootScope, $geolocation, $log){
  	var map = this;
   // map default settings
   map.defaults = {
@@ -55,6 +55,8 @@ angular.module("app").controller("MapCtrl", function($scope, $geolocation){
   $scope.$on("leafletDirectiveMarker.dragend", function(event, args){
     $scope.position.lat = args.model.lat;
     $scope.position.lng = args.model.lng;
+    $log.info($scope.position);
+    $scope.$emit('updateLocation');
   });
 
   /**

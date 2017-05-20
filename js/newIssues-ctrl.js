@@ -35,7 +35,6 @@
   }*/
 
 
-
 //Promise All Issues
   var issueTypePromise;
   function loadIssueTypes() {
@@ -60,25 +59,33 @@ return service;
 angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, AuthService, $http, $log, $state, $scope) {
   var newIssue = this;
   newIssue.issue = {};
-  newIssue.locationOK = false;
+  // init issue location
+  $scope.position = {
+    "lat": 46.778474,
+    "lng": 6.641183
+  };
+  newIssue.issue.location = {
+    "coordinates": [$scope.position.lat, $scope.position.lat],
+    "type": "Point"
+  };
 
   NewIssuesService.getAllIssuesTypes().then(function(issueTypes)
   {
     newIssue.issueTypes = issueTypes;
   });
 
-  newIssue.updateLocation = function(lat, lng)
+  newIssue.updateLocation = function()
   {
     //newIssue.issue.location = marker;
     newIssue.issue.location = {
-      "coordinates": [lng, lat],
+      "coordinates": [$scope.position.lat, $scope.position.lat],
       "type": "Point"
     };
     //newIssue.issue.location.coordinates.push(marker.lat);
     //newIssue.issue.location.coordinates.push(marker.lng);
-    $log.info(newIssue.issue.location.coordinates);
-    newIssue.locationOK = true;
-  }
+    $log.info($scope.position);
+    $log.info('hello');
+  };
 
   newIssue.createNewIssue = function()
   {
@@ -94,5 +101,9 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, Aut
       $log.error(newIssue.error);
     })
   };
+
+  $scope.$on('updateLocation', function () {
+    newIssue.updateLocation();
+  });
 
 });
