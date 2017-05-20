@@ -1,4 +1,5 @@
-    <div class="row">
+     <div ng-controller="IssuesListCtrl as issuelistctrl" class="list-group">
+         <div class="row">
       <section class="col-md-6 no-padding">
         <div class="bg-primary text-center">
           <h2 id="lastIssues">All Issues</h2>
@@ -6,16 +7,16 @@
         <!--<h1>Welcome to {{ homePageCtrl.name }}</h1>-->
         <!-- leaflet map -->
         <div class="map-container" ng-controller="MapCtrl as map">
-         <leaflet width="100%" height="200px" 
-         lf-center="map.center"
+         <leaflet width="100%" height="200px"
+         lf-center="yverdon"
          defaults="map.defaults"
          markers="map.markers">
      </leaflet>
-   </div> 
+   </div>
    <!-- end of leaflet map -->
    <input id="1" ng-model="word" class="form-control" type="text" name="search" placeholder="Search issues matching the specified text" required/>
-   <div ng-controller="IssuesListCtrl as issuelistctrl" class="list-group">
-    <div  ng-repeat="issue in issuelistctrl.issues | filter:word">
+
+    <div  ng-repeat="issue in issues | filter:word">
       <a ui-sref="issues.details({ id: issue.id })" ui-sref-active="active" class="list-group-item list-group-item-action flex-column">
         <div class="justify-content-between">
           <small>{{issue.createdAt | date: "dd.MM.yyyy HH:mm"}}</small>
