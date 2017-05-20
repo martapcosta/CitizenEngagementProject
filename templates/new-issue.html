@@ -1,9 +1,7 @@
-
-<main class="container">
-  <h3 class="col-md-8 col-xs-12">Zoom in, drag the icon and then save your issue's location</h3>
-  <div class="container" ng-controller="NewIssueCtrl as newIssue">
+  <h3>Drag the icon and then save your issue</h3>
+  <div class="row" ng-controller="NewIssueCtrl as newIssue">
     <!-- start of leaflet map -->
-    <section class="map-container" ng-controller="MapCtrl as map" class='col-md-6'>
+    <div class="map-container col-md-6" ng-controller="MapCtrl as map">
      <leaflet width="100%" height="400px"
         lf-center="yverdon"
         event-broadcast="events"
@@ -11,11 +9,10 @@
         markers="markers">
       </leaflet>
       <button class='btn btn-danger form-group pull-left' type="submit" ng-click="newIssue.updateLocation(position.lat, position.lng)">Save Location</button>
-    </section>
+    </div>
     <!-- end of leaflet map -->
     <!-- form for new issue -->
-    <section class='col-md-6 col-md-offset-6'>
-      <div><h3 class="col-md-8 col-xs-12">Other details...</h3></div>
+    <div class="col-md-4">
       <form name="form" ng-submit="newIssue.createNewIssue()" role="form">
         <div class='form-row'>
           <label class="item item-input item-select">
@@ -42,6 +39,5 @@
         <button class='btn btn-danger form-group' type="submit" class="btn">Save Issue </button>
       </form>
       <!-- end of form -->
-    </section>
-  </div>
-</main>
+    </div>
+</div>
