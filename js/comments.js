@@ -1,7 +1,7 @@
 /**
  * CommentsService.
  */
-app.service('CommentsService', function ($http, AuthService,$filter) {
+angular.module('app').factory('CommentsService', function ($http, AuthService,$filter) {
     
 var service = {};
 
@@ -24,18 +24,22 @@ service.addComment = function(comment, issueId){
 */
 service.orderComments = function (comments) {
     return $filter('orderBy')(comments, '-createdAt', true);
-    
-    };
+};
+
+return service;
+});
 
 
 /**
  * Controller managing issues comments
  */
-app.controller('CommentsCtrl', function ($rootScope, $scope, CommentsService) {
+angular.module('app').controller('CommentsCtrl', function ($scope, CommentsService) {
     
-    $scope.comm = null;
     var commentsCtrl = this;
+
+    $scope.comm = null;
     delete commentsCtrl.error;
+    
     /**
      * Adds a comment
     */
@@ -44,6 +48,8 @@ app.controller('CommentsCtrl', function ($rootScope, $scope, CommentsService) {
                 .addComment($scope.comm, $scope.issue.id)
                 .success(function (data) {
                     $scope.comm = null;
+                    $scope.$emit('newComment', data);
+                    console.log(data);
                 })
                 .error(function () {
                     commentsCtrl.error ="Error adding comment";

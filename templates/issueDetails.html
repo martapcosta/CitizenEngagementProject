@@ -1,80 +1,85 @@
 <div class="modal-content" ng-controller='DetailsCtrl as details'>
- 	<!-- leaflet map -->
-    <div class="map-container" ng-controller="MapCtrl as map">
-         <leaflet width="100%" height="200px"
-         	lf-center="yverdon"
-         	defaults="map.defaults"
-         	markers="map.markers">
-     	</leaflet>
-   </div>
-   <!-- end of leaflet map -->
-	<div  class="bg-primary text-center">
-		<div class="modal-header bg-primary text-center">
-			<h2 class="modal-title">Selected Issue Details</h2>
+	<!-- leaflet map -->
+	<div class="map-container" ng-controller="MapCtrl as map">
+		<leaflet width="100%" height="200px"
+		lf-center="yverdon"
+		defaults="map.defaults"
+		markers="map.markers">
+	</leaflet>
+</div>
+<!-- end of leaflet map -->
+<div  class="bg-primary text-center">
+	<div class="modal-header bg-primary text-center">
+		<h2 class="modal-title">Selected Issue Details</h2>
+	</div>
+</div>
+<div class="modal-body" id="issue-details">
+	<div class="list-group-item list-group-item-action flex-column row">
+		<div class="col">
+			<h3>Creation</h3>
+			<p>{{issue.createdAt| date:'dd MMM yyyy'}}</p>
+		</div>
+		<div class="col">
+			<h3>Last modification</h3>
+			<p>{{issue.updatedAt| date:'dd MMM yyyy'}}</p>
 		</div>
 	</div>
-	<div class="modal-body" id="issue-details">
-		<div class="list-group-item list-group-item-action flex-column row">
-			<div class="col">
-				<h3>Creation</h3>
-				<p>{{issue.createdAt| date:'dd MMM yyyy'}}</p>
-			</div>
-			<div class="col">
-				<h3>Last modification</h3>
-				<p>{{issue.updatedAt| date:'dd MMM yyyy'}}</p>
-			</div>
-		</div>
-		<div class="list-group-item list-group-item-action flex-column row">
-			<div class="col">
-				<h3>Status</h3>
-				<p>{{issue.state}}</p>
-			</div>
-		</div>
-		<div class="list-group-item list-group-item-action flex-column row">
-			<div class="col issue-type">
-				<h3>Issue Type</h3>
-				<p>{{details.issuetype.name}}</p>
-				<p>{{details.issuetype.description}}</p>
-			</div>
-		</div>
-		<div class="list-group-item list-group-item-action flex-column row">
-			<div class="col">
-				<h3>Description</h3>
-				<p>{{issue.description}}</p>
-			</div>
-		</div>
-		<div class="list-group-item list-group-item-action flex-column row">
-			<div class="col">
-				<h3>Tags</h3>
-				<span class="tag-list btn" ng-repeat="tag in issue.tags">{{tag}}<i class="glyphicon glyphicon-tags"></i></span>
-				<!--ng-click="removeTag(tag)"-->
-				<span class="no-tag" ng-if="issue.tags.length < 1">No tag</span>
-				<tags-input ng-model="issue.tags" use-strings="true"></tags-input>
-			</div>
-		</div>
-		<div class="list-group-item list-group-item-action flex-column row comments">
-			<h3>{{details.comments.length}} Comment{{details.comments.length > 1 ? 's' : ''}}</h3>
-			<div class="card" ng-repeat="comment in details.comments">
-				<div><q>{{comment.text}}</q><small>posted by {{comment.name}}, on the {{comment.createdAt| date: 'dd MMM yyyy'}}.</small></div>
-			</div>
+	<div class="list-group-item list-group-item-action flex-column row">
+		<div class="col">
+			<h3>Status</h3>
+			<p>{{issue.state}}</p>
 		</div>
 	</div>
-	<div class="issue-error" ng-if="error">
-		<p>{{error.msg}}</p>
+	<div class="list-group-item list-group-item-action flex-column row">
+		<div class="col issue-type">
+			<h3>Issue Type</h3>
+			<p>{{details.issuetype.name}}</p>
+			<p>{{details.issuetype.description}}</p>
+		</div>
 	</div>
-	<div align-title="left" class="panel-footer" ng-controller="CommentsCtrl as commentsCtrl" ng-if="!error">
-		<form class="item-input-inset" name="commentForm">
-			<label class="item-input-wrapper">
-				<input type="text" placeholder="New Comment" maxlength="140" required ng-model="comm">
-			</label>
-			<button class="btn btn-danger pull-right">
-				<span class="glyphicon glyphicon-send" ng-click="addComment()" ng-disabled="commentForm.$invalid">
-				</span>
-			Send!
-			</button>
-			<div class="alert alert-danger" ng-if="commentsCtrl.error">
-          {{commentsCtrl.error}}
-        </div>
-		</form>
+	<div class="list-group-item list-group-item-action flex-column row">
+		<div class="col">
+			<h3>Description</h3>
+			<p>{{issue.description}}</p>
+		</div>
 	</div>
+	<div class="list-group-item list-group-item-action flex-column row">
+		<div class="col">
+			<h3>Tags</h3>
+			<span class="tag-list btn" ng-repeat="tag in issue.tags">{{tag}}<i class="glyphicon glyphicon-tags"></i></span>
+			<!--ng-click="removeTag(tag)"-->
+			<span class="no-tag" ng-if="issue.tags.length < 1">No tag</span>
+			<tags-input ng-model="issue.tags" use-strings="true"></tags-input>
+		</div>
+	</div>
+	<button class="btn btn-secondary" ng-click="showCcommentWrapper = true">Show all comments</button>
+	<div ng-show="showCcommentWrapper" class="list-group-item list-group-item-action flex-column row comments">
+		<h3>{{details.comments.length}} Comment{{details.comments.length > 1 ? 's' : ''}}</h3>
+		<div class="card" id="{{comment.id}}" ng-repeat="comment in details.comments">
+			<div><q>{{comment.text}}</q><small>posted by {{comment.name}}, on the {{comment.createdAt| date: 'dd MMM yyyy'}}.</small></div>
+		</div>
+		<button class="btn btn-secondary" ng-click="showCcommentWrapper = false"> Hide Comments</button>
+	</div>
+</div>
+<div class="issue-error" ng-if="error">
+	<p>{{error.msg}}</p>
+</div>
+<div align-title="left" class="panel-footer" ng-controller="CommentsCtrl as commentsCtrl" ng-if="!error">
+	<form class="item-input-inset" name="commentForm">
+		<label>
+			<textarea type="text" placeholder="New Comment" maxlength="500" required ng-model="comm"></textarea>
+		</label>
+		<button class="btn btn-danger pull-right">
+			<span class="glyphicon glyphicon-send" ng-click="addComment()" ng-disabled="commentForm.$invalid">
+			</span>
+			Send Comment
+		</button>
+		<div class="alert alert-danger" ng-if="commentsCtrl.error">
+			{{commentsCtrl.error}}
+		</div>
+	</form>
+	<button class="btn btn-primary" ng-click="$dismiss()">
+		Close
+	</button>
+</div>
 </div>

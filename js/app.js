@@ -50,11 +50,6 @@
     templateUrl: "./templates/register.html",
     controller: 'RegisterCtrl as register'
   });
-  /*$stateProvider.state('issues.details', {
-    url: "/:id",
-    templateUrl: "./templates/issueDetails.html",
-    controller: 'DetailsCtrl as details'
-  });*/
   $stateProvider.state('issues.details', {
     url: "/:id",
     onEnter: function($modal){

@@ -174,12 +174,9 @@ $scope.goUp = function () {
           var userid = userHref.substr(userHref.lastIndexOf('/') + 1);
           IssuesService.getUser(userid).then(function (user) {
             var obj = angular.merge(comment,user);
-            //console.log(user);
             commentsArray.push(obj);
           });
         });
-        //console.log(usersArray);
-      console.log(commentsArray);
        detailsCtrl.comments = commentsArray;
       });
     });
@@ -187,10 +184,19 @@ $scope.goUp = function () {
   });
 
 
-    // Reload the data when a new comment is posted.
-    //$scope.$on('newComment', function (e, data) {
-    //  $scope.issue = data;
-    //});
+    // Reload the data of a new posted comment.
+    $scope.$on('newComment', function (e, data) {
+
+      _.each(data, function(comment) {
+          var userHref = comment['authorHref'];
+          var userid = userHref.substr(userHref.lastIndexOf('/') + 1);
+          IssuesService.getUser(userid).then(function (user) {
+            var obj = angular.merge(comment,user);
+            commentsArray.push(obj);
+          });
+        });
+      detailsCtrl.comments = commentsArray;
+    });
 
     /**
      * Register the showIssueOnMap function to the scope.

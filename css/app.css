@@ -16,3 +16,29 @@ h4 {
 .tag-list .btn{
   margin:2px;
  }
+
+
+ /* COMMENTS */
+
+.comments {
+    padding: 0 10px;
+}
+
+.comments .card:first-of-type {
+    margin-top: 10px;
+}
+.comments .card {
+    margin: 10px 0;
+    padding: 10px;
+}
+.comments .card div:last-of-type {
+    border-top: 1px solid #eee;
+    margin-top: 10px;
+    padding-top: 2px;
+    font-size: 12px;
+    color: #AAA;
+}
+.comments .card div:last-of-type span {
+    position: relative;
+    top: 3px;
+}
