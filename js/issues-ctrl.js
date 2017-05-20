@@ -8,17 +8,15 @@
 /**
 * Gets comments from a given issue.
 */
-service.getComments = function(issueId){
-    return $http({
-                method: 'GET',
-                url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/' + issueId + '/comments'
-            });    
-    };
-
+service.getComments = function(issueId) {
+    return fetchAllIssueComments(issueId).then(function(comments) {
+      return comments;
+    });
+  };
 /**
 * Gets All issues
 */
-  service.getAllIssues = function() {
+service.getAllIssues = function() {
     return fetchAllIssues().then(function(issues) {
       return issues;
     });
@@ -31,6 +29,12 @@ service.getIssue = function(issueId) {
    return getIssueData(issueId);
 };
 
+/**
+* Gets given issue data 
+*/
+service.getUser = function(userId) {
+   return getUserData(userId);
+};
 
   service.getTypeData = function(idType) {
     return getIssueType(idType);
@@ -74,6 +78,18 @@ function getIssueData(id) {
 }
 
 /**
+* Get user data
+*/
+function getUserData(userId) {
+  return $http({
+    method: 'GET',
+    url: 'https://masrad-dfa-2017-g.herokuapp.com/api/users/' + userId
+  }).then(function(res) {
+    return res.data;
+  });
+}
+
+/**
 * Get issue type data
 */
 function getIssueType(idType) {
@@ -84,6 +100,31 @@ function getIssueType(idType) {
     return res.data;
   });
 }
+
+/**
+* Get issue comments
+*/
+function fetchAllIssueComments(issueId,page, items) {
+  page = page || 1; // Start from page 1
+  items = items || [];
+  // GET the current page
+  return $http({
+    method: 'GET',
+    url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/' + issueId + '/comments',
+    params: {
+      page: page,
+      pageSize: 50
+    }
+}).then(function(res) {
+  if (res.data.length) {
+      // If there are any items, add them
+      // and recursively fetch the next page
+      items = items.concat(res.data);
+      return fetchAllIssueComments(issueId, page + 1, items);
+    }
+    return items;
+  });
+};
 
 return service;
 });
@@ -115,18 +156,31 @@ $scope.goUp = function () {
 
   var issueId = $stateParams.id;
 
+
   IssuesService.getIssue(issueId).then(function(issue) {
 
     var issueTypeHref = issue['issueTypeHref'];
     // get the idType of issueTypeHref
     var issueTypeId = issueTypeHref.substr(issueTypeHref.lastIndexOf('/') + 1);
     IssuesService.getTypeData(issueTypeId).then(function(issuetype) {
-    detailsCtrl.issuetype = issuetype;
-    detailsCtrl.issue = issue;
+      detailsCtrl.issuetype = issuetype;
+      detailsCtrl.issue = issue;
     
-    IssuesService.getComments(issueId).then(function (comments) {
-       detailsCtrl.comments = comments;
-       console.log(comments);
+      IssuesService.getComments(issueId).then(function (comments) {
+        var commentsArray =[];
+
+        _.each(comments, function(comment) {
+          var userHref = comment['authorHref'];
+          var userid = userHref.substr(userHref.lastIndexOf('/') + 1);
+          IssuesService.getUser(userid).then(function (user) {
+            var obj = angular.merge(comment,user);
+            //console.log(user);
+            commentsArray.push(obj);
+          });
+        });
+        //console.log(usersArray);
+      console.log(commentsArray);
+       detailsCtrl.comments = commentsArray;
       });
     });
 

@@ -53,19 +53,16 @@
 			</div>
 		</div>
 		<div class="list-group-item list-group-item-action flex-column row comments">
-			<!--<h3>{{details.comments.length}} Comment{{details.comments.length > 1 ? 's' : ''}}</h3>-->
+			<h3>{{details.comments.length}} Comment{{details.comments.length > 1 ? 's' : ''}}</h3>
 			<div class="card" id="{{comment.id}}" ng-repeat="comment in details.comments">
-				<div>{{comment.text}}</div>
-				<div>
-					<span>{{comment.authorHref}}, at {{comment.createdAt| date: 'dd MMM yyyy'}}.</span>
-				</div>
+				<div><q>{{comment.text}}</q><small>posted by {{comment.name}}, on the {{comment.createdAt| date: 'dd MMM yyyy'}}.</small></div>
 			</div>
 		</div>
 	</div>
 	<div class="issue-error" ng-if="error">
 		<p>{{error.msg}}</p>
 	</div>
-	<!--<div align-title="left" class="panel-footer" ng-controller="CommentsCtrl" ng-if="!error">
+	<div align-title="left" class="panel-footer" ng-controller="CommentsCtrl" ng-if="!error">
 		<form class="item-input-inset" name="commentForm">
 			<label class="item-input-wrapper">
 				<input type="text" placeholder="New Comment" maxlength="140" required ng-model="comment">
@@ -76,5 +73,5 @@
 			Send!
 			</button>
 		</form>
-	</div>-->
+	</div>
 </div>
