@@ -3,6 +3,7 @@
  */
 angular.module("app").controller("MapCtrl", function($scope, $rootScope, $geolocation, $log){
  	var map = this;
+
   // map default settings
   map.defaults = {
     doubleClickZoom: true, // enable the double-click zoom
@@ -59,27 +60,49 @@ angular.module("app").controller("MapCtrl", function($scope, $rootScope, $geoloc
     $scope.$emit('updateLocation');
   });
 
+    /**
+    * Inserts issues data on the map with markers.
+    */
+    map.insertIssuesData = function() {
+      var data = $scope.issues;
+      $scope.map.markers = [];
+      // If data array is not null, create a marker for each element and add it to map_markers
+      if (data.length > 0) {
+        for (var i = 0; i < data.length; i++) {
+          var marker = {
+            lat: data[i].location.coordinates[1],
+            lng: data[i].location.coordinates[0],
+            icon: defaultIcon,
+            name: data[i].id
+          };
+          $scope.map.markers.push(marker);
+      }}
+    }
+
   /**
-  * Inserts issues data on the map with markers.
-  */
-  map.insertIssuesData = function() {
-    var data = $scope.issues;
-    $scope.map.markers = [];
-    // If data array is not null, create a marker for each element and add it to map_markers
-    if (data.length > 0) {
-      for (var i = 0; i < data.length; i++) {
-        var marker = {
-          lat: data[i].location.coordinates[1],
-          lng: data[i].location.coordinates[0],
-          icon: defaultIcon,
-        };
-        $scope.map.markers.push(marker);
-    }}
+    * Inserts issues data on the map with markers.
+    */
+  map.insertDetailedIssue = function() {
+    var data = $scope.issue;
+    $scope.map.markerDetail = [{
+      lat: data.location.coordinates[1],
+      lng: data.location.coordinates[0],
+      icon: defaultIcon
+    }];
+    $log.info($scope.map.markerDetail);
+    $scope.yverdon.lat = data.location.coordinates[1];
+    $scope.yverdon.lng = data.location.coordinates[0];
+
   }
 
-  //starting to show issues in map - not finished
-    $scope.$on('dataloaded', function () {
-        map.insertIssuesData();
-    });
+  //show all markers on map after load all issues
+  $scope.$on('dataloaded', function () {
+    map.insertIssuesData();
+  });
+
+  //show detailled issue on map
+  $scope.$on('detailedissueloaded', function () {
+    map.insertDetailedIssue();
+  });
 
 });

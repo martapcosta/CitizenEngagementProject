@@ -23,14 +23,14 @@ service.getAllIssues = function() {
   };
 
 /**
-* Gets given issue data 
+* Gets given issue data
 */
 service.getIssue = function(issueId) {
    return getIssueData(issueId);
 };
 
 /**
-* Gets given issue data 
+* Gets given issue data
 */
 service.getUser = function(userId) {
    return getUserData(userId);
@@ -165,7 +165,8 @@ $scope.goUp = function () {
     IssuesService.getTypeData(issueTypeId).then(function(issuetype) {
       detailsCtrl.issuetype = issuetype;
       $scope.issue = issue;
-    
+      $scope.$broadcast('detailedissueloaded');
+
       IssuesService.getComments(issueId).then(function (comments) {
         var commentsArray =[];
 
