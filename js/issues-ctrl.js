@@ -177,6 +177,7 @@ $scope.goUp = function () {
             commentsArray.push(obj);
           });
         });
+        //comments with new data about the user
        detailsCtrl.comments = commentsArray;
       });
     });
@@ -187,14 +188,12 @@ $scope.goUp = function () {
     // Reload the data of a new posted comment.
     $scope.$on('newComment', function (e, data) {
 
-      _.each(data, function(comment) {
-          var userHref = comment['authorHref'];
-          var userid = userHref.substr(userHref.lastIndexOf('/') + 1);
-          IssuesService.getUser(userid).then(function (user) {
+      /*var userHref = data['authorHref'];
+      var userid = userHref.substr(userHref.lastIndexOf('/') + 1);
+      IssuesService.getUser(userid).then(function (user) {
             var obj = angular.merge(comment,user);
             commentsArray.push(obj);
-          });
-        });
+      });*/
       detailsCtrl.comments = commentsArray;
     });
 

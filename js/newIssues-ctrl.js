@@ -35,7 +35,7 @@
   }*/
 
 
-//Promise All Issues
+//Promise All Issues Types
   var issueTypePromise;
   function loadIssueTypes() {
     if (!issueTypePromise) {
