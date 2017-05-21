@@ -5,6 +5,28 @@
 
   var service = {};
 
+
+service.getAllIssuesTypes = function() {//add page and number of issues as arguments
+  return loadIssueTypes().then(function(issueTypes) {
+
+    return issueTypes;
+  });
+};
+
+var issueTypePromise;
+function loadIssueTypes() {
+  if (!issueTypePromise) {
+    issueTypePromise = $http({
+      method: 'GET',
+      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issueTypes'
+  }).then(function(res) {
+    return res.data;
+  });
+}
+
+return issueTypePromise;
+}
+
 /**
 * Gets comments from a given issue.
 */
@@ -133,23 +155,25 @@ return service;
  angular.module('app').controller('IssuesListCtrl', function($http,$state,IssuesService,$scope,$location,$anchorScroll,AuthService) {
 
   var IssuesListCtrl = this;
-  $scope.selectedIssueType = null;
 
   IssuesService.getAllIssues().then(function(issues) {
     $scope.issues = issues;
     $scope.$broadcast('dataloaded');
   });
 
-  $scope.$on('updateTags', function (e, data) {
-     console.log(data.tags);
-    $scope.issues.tags = data.tags;
+  IssuesService.getAllIssuesTypes().then(function(issueTypes)
+  {
+    $scope.issueTypes = issueTypes;
+  });
 
+  $scope.$on('updateTags', function (e, data) {
+    console.log(data['id']);
+    // not the best way of doing because it calls all issues again
+    // but it updates the view with the updated tags
+    IssuesService.getAllIssues().then(function(issues) {
+      $scope.issues = issues;
     });
-// Goes up in page - used in issues template when clicking to issues details
-$scope.goUp = function () {
-                $location.hash('up');
-                $anchorScroll();
-            }
+    });
 
 });
 
@@ -221,35 +245,12 @@ $scope.goUp = function () {
         // $scope.issue.tags not beeing updated here only after ajax call ??
         updateTags($scope.issue.tags, $scope.issue.id)
         .then(function(){
-          updateTags($scope.issue.tags, $scope.issue.id);
+          updateTags($scope.issue.tags, $scope.issue.id).then(function(response){
+            $rootScope.$broadcast('updateTags', response.data);
+          })
         })
-        .then(function(response){
-          console.log(response.data);
-          $rootScope.$broadcast('updateTags', response.data);
-        })
-<<<<<<< HEAD
-=======
-
->>>>>>> f921ab050934310c638bb900e0e17059409494ad
         .catch(function () {
           $scope.error ="Error changing issue tags";
         });
     };
-
-  
-
-
-    /**
-     * Register the showIssueOnMap function to the scope.
-     * This function saves the localisation of the issue in the LocalStorage in order to pass them to the app.details.map view.
-     */
-     /*$scope.showIssueOnMap = function () {
-    store.set('issue', {
-        lat: $scope.issue.lat,
-        lng: $scope.issue.lng,
-        description: $scope.issue.description
-      });
-      $state.go('app.details.map');
-    };*/
-
-  });
+});
