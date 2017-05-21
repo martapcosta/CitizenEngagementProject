@@ -53,10 +53,24 @@ angular.module("app").controller("MapCtrl", function($scope, $rootScope, $geoloc
     }
   });
 
+  function GetAddress(marker) {
+    var lat = marker.lat;
+    var lng = marker.lng;
+    var latlng = new google.maps.LatLng(lat, lng);
+    var geocoder = geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[1]) {
+            $log.info("Location: " + results[1].formatted_address);
+        }
+      }
+    });
+  }
+
   $scope.$on("leafletDirectiveMarker.dragend", function(event, args){
     $scope.position.lat = args.model.lat;
     $scope.position.lng = args.model.lng;
-    $log.info($scope.position);
+    GetAddress($scope.position);
     $scope.$emit('updateLocation');
   });
 

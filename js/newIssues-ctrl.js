@@ -81,10 +81,6 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, Aut
       "coordinates": [$scope.position.lng, $scope.position.lat],
       "type": "Point"
     };
-    //newIssue.issue.location.coordinates.push(marker.lat);
-    //newIssue.issue.location.coordinates.push(marker.lng);
-    $log.info($scope.position);
-    $log.info('hello');
   };
 
   newIssue.createNewIssue = function()
