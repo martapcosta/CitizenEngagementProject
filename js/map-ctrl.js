@@ -54,16 +54,12 @@ angular.module("app").controller("MapCtrl", function($scope, $rootScope, $geoloc
   });
 
   function GetAddress(marker) {
-    var maps = L.map('maps');
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(maps);
-
-  var geocodeService = L.esri.Geocoding.geocodeService();
+    var geocodeService = L.esri.Geocoding.geocodeService();
     var latlng = {lat: parseFloat(marker.lat), lng: parseFloat(marker.lng)};
     geocodeService.reverse().latlng(latlng).run(function(error, result) {
       $log.info(result.address.Match_addr);
+      $scope.address = result.address.Match_addr;
+        $log.info($scope.address);
     });
   }
 

@@ -8,7 +8,8 @@
         defaults="map.defaults"
         markers="markers">
       </leaflet>
-      <div id="maps"></div>
+      <span><strong>Selected address: </strong></span>
+      <span ng-init="address = 'Place Pestalozzi 4, 1400, Yverdon-les-Bains, Vaud'" ng-bind="address"></span>
       <!--button class='btn btn-danger form-group pull-left' type="submit" ng-click="newIssue.updateLocation(position.lat, position.lng)">Save Location</button-->
     </div>
     <!-- end of leaflet map -->
