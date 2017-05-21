@@ -65,7 +65,7 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, Aut
     "lng": 6.641183
   };
   newIssue.issue.location = {
-    "coordinates": [$scope.position.lat, $scope.position.lat],
+    "coordinates": [$scope.position.lng, $scope.position.lat],
     "type": "Point"
   };
 
@@ -78,13 +78,9 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, Aut
   {
     //newIssue.issue.location = marker;
     newIssue.issue.location = {
-      "coordinates": [$scope.position.lat, $scope.position.lat],
+      "coordinates": [$scope.position.lng, $scope.position.lat],
       "type": "Point"
     };
-    //newIssue.issue.location.coordinates.push(marker.lat);
-    //newIssue.issue.location.coordinates.push(marker.lng);
-    $log.info($scope.position);
-    $log.info('hello');
   };
 
   newIssue.createNewIssue = function()
