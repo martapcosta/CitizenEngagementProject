@@ -46,10 +46,9 @@
 	<div class="list-group-item list-group-item-action flex-column row">
 		<div class="col">
 			<h3>Tags</h3>
-			<span class="tag-list btn" ng-repeat="tag in issue.tags">{{tag}}<i class="glyphicon glyphicon-tags"></i></span>
-			<!--ng-click="removeTag(tag)"-->
+			<span class="tag-list btn" ng-repeat="tag in issue.tags" ng-click="deleteTag(tag)">{{tag}}<i class="glyphicon glyphicon-tags"></i></span>
 			<span class="no-tag" ng-if="issue.tags.length < 1">No tag</span>
-			<tags-input ng-model="issue.tags" use-strings="true"></tags-input>
+			<!--<tags-input ng-model="issue.tags" use-strings="true"></tags-input>-->
 		</div>
 	</div>
 	<button class="btn btn-secondary" ng-click="showCcommentWrapper = true">Show all comments</button>
@@ -65,12 +64,12 @@
 	<p>{{error.msg}}</p>
 </div>
 <div align-title="left" class="panel-footer" ng-controller="CommentsCtrl as commentsCtrl" ng-if="!error">
-	<form class="item-input-inset" name="commentForm">
-		<label>
-			<textarea type="text" placeholder="New Comment" maxlength="500" required ng-model="comm"></textarea>
+	<form class="item-input-inset" ng-submit="commentsCtrl.newComment()" name="commForm">
+		<label class="item-input-wrapper">
+			<textarea type="text" placeholder="New Comment" maxlength="100" required ng-model="comm"></textarea>
 		</label>
 		<button class="btn btn-danger pull-right">
-			<span class="glyphicon glyphicon-send" ng-click="addComment()" ng-disabled="commentForm.$invalid">
+			<span class="glyphicon glyphicon-send" ng-disabled="commForm.$invalid">
 			</span>
 			Send Comment
 		</button>

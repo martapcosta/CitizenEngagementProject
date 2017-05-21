@@ -150,7 +150,7 @@ $scope.goUp = function () {
 /**
  * Controller to manage an issue data and show it
  */
- angular.module('app').controller('DetailsCtrl', function (IssuesService,$stateParams,$rootScope, $scope, $state, store) {
+ angular.module('app').controller('DetailsCtrl', function (IssuesService,$stateParams,$rootScope, $scope, $state, $http,$filter) {
 
   var detailsCtrl = this;
 
@@ -186,17 +186,46 @@ $scope.goUp = function () {
   });
 
 
-    // Reload the data of a new posted comment.
+    // To reload the data after a new posted comment.
     $scope.$on('newComment', function (e, data) {
-
-      /*var userHref = data['authorHref'];
+      var userHref = data['authorHref'];
+      console.log(userHref);
       var userid = userHref.substr(userHref.lastIndexOf('/') + 1);
+
       IssuesService.getUser(userid).then(function (user) {
-            var obj = angular.merge(comment,user);
-            commentsArray.push(obj);
-      });*/
-      detailsCtrl.comments = commentsArray;
+            var obj = angular.merge(data,user);
+            detailsCtrl.comments.push(obj);
+          });
     });
+
+     // function to remove a from a given issue in API
+    function removeTag(tag, issueId) {
+            return $http({
+                method: 'PATCH',
+                data: {
+                    tags: [tag]
+                },
+                url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/' + issueId
+            });
+        };
+
+    // add deleteTag into the $scope
+    // executes removeTag function and then updates the tags and     
+    $scope.deleteTag = function (tag) {
+                removeTag(tag, $scope.issue.id)
+                .then(function (response) {
+                    
+                    $scope.issue.tags = $filter('filter')($scope.issue.tags, function (value) {
+                        return value !== tag;
+                    });
+                })
+                .catch(function () {
+                    $scope.error ="Error removing tag";
+                });
+    };
+
+
+
 
     /**
      * Register the showIssueOnMap function to the scope.

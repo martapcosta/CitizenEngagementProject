@@ -1,31 +1,26 @@
 /**
  * CommentsService.
  */
-angular.module('app').factory('CommentsService', function ($http, AuthService,$filter) {
+//angular.module('app').factory('CommentsService', function ($http, AuthService,$filter) {
     
-var service = {};
+//var service = {};
 
 
 /**
 * Adds a comment to the given issue.
 */
-service.addCommentInIssue = function(comment, issueId){
+/*service.addCommentInIssue = function(comment, issueId){
     return  addComment(comment, issueId).then(function(comment) {
       return comment;
+      console.log(comment);
     });   
-};
+};*/
 
-/**
-* Order the comments by createdAt
-*/
-service.orderComments = function (comments) {
-    return $filter('orderBy')(comments, '-createdAt', true);
-};
 
 /**
 * Adds a comment to the given issue.
 */
-function addComment (comment, issueId){
+/*function addComment (comment, issueId){
     return $http({
                 method: 'POST',
                 data: {
@@ -36,7 +31,7 @@ function addComment (comment, issueId){
 };
 
 return service;
-});
+});*/
 
 
 
@@ -44,31 +39,36 @@ return service;
 /**
  * Controller managing issues comments
  */
-angular.module('app').controller('CommentsCtrl', function ($scope, CommentsService) {
+angular.module('app').controller('CommentsCtrl', function ($http,$scope) {
     
     var commentsCtrl = this;
 
     $scope.comm = null;
     delete commentsCtrl.error;
 
-    console.log($scope.comm);
-    console.log($scope.issue);
+
+    // function to post a comment in API
+    function addComment (comment, issueId){
+    return $http({
+                method: 'POST',
+                data: {
+                    text: comment
+                },
+                url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/' + issueId + '/comments'
+            });    
+    };
     
     /**
      * Adds a comment
     */
-    $scope.addComment = function () {
-        console.log($scope.comm);
-        console.log($scope.issue.id);
-        CommentsService
-                .addCommentInIssue($scope.comm, $scope.issue.id)
-                .success(function (data) {
+    commentsCtrl.newComment = function () {
+                addComment($scope.comm, $scope.issue.id)
+                .then(function (response) {
                     $scope.comm = null;
-                    $scope.$emit('newComment', data);
-                    console.log(data);
+                    $scope.$emit('newComment', response.data);
                 })
-                .error(function () {
-                    commentsCtrl.error ="Error adding comment";
+                .catch(function () {
+                    $scope.error ="Error adding comment";
                 }); 
     }; 
 });
