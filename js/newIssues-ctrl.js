@@ -1,62 +1,4 @@
-/**
- * News Issues Service
- */
- angular.module('app').factory('NewIssuesService', function($http) {
-
-  var service = {};
-
-
-  service.getAllIssuesTypes = function() {//add page and number of issues as arguments
-    return loadIssueTypes().then(function(issueTypes) {
-
-      return issueTypes;
-    });
-  };
-
-  //newIssue.issue.tags = [];
-  /*newIssue.getAllIssueTypes = function () {
-    return $http({
-      method: 'GET',
-      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issueTypes'
-    }).then(function (response) {
-      var issueTypes = [];
-      for (var i = 0; i < response.data.length; i++) {
-        issueTypes.push({
-          name: response.data[i].name,
-          description: response.data[i].description,
-          id: response.data[i].id,
-          href: response.data[i].href
-        });
-      }
-      return issueTypes;
-    }, function (error) {
-      return null;
-    });
-  }*/
-
-
-//Promise All Issues
-  var issueTypePromise;
-  function loadIssueTypes() {
-    if (!issueTypePromise) {
-      issueTypePromise = $http({
-        method: 'GET',
-        url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issueTypes'
-    }).then(function(res) {
-      return res.data;
-    });
-  }
-
-  return issueTypePromise;
-}
-
-return service;
-});
-//end of service
-
-
-
-angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, AuthService, $http, $log, $state,$rootScope, $scope) {
+angular.module('app').controller('NewIssueCtrl', function (IssuesService, AuthService, $http, $log, $state,$rootScope, $scope) {
   var newIssue = this;
   newIssue.issue = {};
   // init issue location
@@ -69,7 +11,7 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, Aut
     "type": "Point"
   };
 
-  NewIssuesService.getAllIssuesTypes().then(function(issueTypes)
+  IssuesService.getAllIssuesTypes().then(function(issueTypes)
   {
     newIssue.issueTypes = issueTypes;
   });

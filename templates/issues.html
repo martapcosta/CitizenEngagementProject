@@ -13,6 +13,11 @@
          markers="map.markers">
      </leaflet>
    </div>
+   <label class="input-label">Filter by issue type</label>
+   <select class="form-control"
+     ng-model="issueType.name"
+     ng-options="issueType.href as issueType.name for issueType in issueTypes">
+     <option value="">Issue Type</option>
    <!-- end of leaflet map -->
    <input id="1" ng-model="word" class="form-control" type="text" name="search" placeholder="Search issues matching the specified text" required/>
 
