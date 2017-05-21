@@ -126,6 +126,27 @@ function fetchAllIssueComments(issueId,page, items) {
   });
 };
 
+service.getAllIssuesTypes = function() {//add page and number of issues as arguments
+  return loadIssueTypes().then(function(issueTypes) {
+
+    return issueTypes;
+  });
+};
+
+var issueTypePromise;
+function loadIssueTypes() {
+  if (!issueTypePromise) {
+    issueTypePromise = $http({
+      method: 'GET',
+      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issueTypes'
+  }).then(function(res) {
+    return res.data;
+  });
+}
+
+return issueTypePromise;
+}
+
 return service;
 });
 
@@ -133,6 +154,11 @@ return service;
  angular.module('app').controller('IssuesListCtrl', function($http,$state,IssuesService,$scope,$location,$anchorScroll,AuthService) {
 
   var IssuesListCtrl = this;
+
+  IssuesService.getAllIssuesTypes().then(function(issueTypes)
+  {
+    $scope.issueTypes = issueTypes;
+  });
 
   IssuesService.getAllIssues().then(function(issues) {
     $scope.issues = issues;
