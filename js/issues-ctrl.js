@@ -133,6 +133,7 @@ return service;
  angular.module('app').controller('IssuesListCtrl', function($http,$state,IssuesService,$scope,$location,$anchorScroll,AuthService) {
 
   var IssuesListCtrl = this;
+  $scope.selectedIssueType = null;
 
   IssuesService.getAllIssues().then(function(issues) {
     $scope.issues = issues;
@@ -226,6 +227,10 @@ $scope.goUp = function () {
           console.log(response.data);
           $rootScope.$broadcast('updateTags', response.data);
         })
+<<<<<<< HEAD
+=======
+
+>>>>>>> f921ab050934310c638bb900e0e17059409494ad
         .catch(function () {
           $scope.error ="Error changing issue tags";
         });

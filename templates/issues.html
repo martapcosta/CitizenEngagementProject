@@ -15,13 +15,14 @@
    </div>
    <label class="input-label">Filter by issue type</label>
    <select class="form-control"
-     ng-model="issueType.name"
+    data-ng-change="selectedIssueType = issueType.href"
+     ng-model="issueType.href"
      ng-options="issueType.href as issueType.name for issueType in issueTypes">
      <option value="">Issue Type</option>
    <!-- end of leaflet map -->
    <input id="1" ng-model="word" class="form-control" type="text" name="search" placeholder="Search issues matching the specified text" required/>
 
-    <div  ng-repeat="issue in issues | filter:word">
+    <div  ng-repeat="issue in issues | filter: ((selectedIssueType != null) ? {issueTypeHref: selectedIssueType} : '') | filter:word">
       <a ui-sref="issues.details({ id: issue.id })" ui-sref-active="active" class="list-group-item list-group-item-action flex-column">
         <div class="justify-content-between">
           <small>{{issue.createdAt | date: "dd.MM.yyyy HH:mm"}}</small>
