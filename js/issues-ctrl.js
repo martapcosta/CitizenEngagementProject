@@ -126,27 +126,6 @@ function fetchAllIssueComments(issueId,page, items) {
   });
 };
 
-service.getAllIssuesTypes = function() {//add page and number of issues as arguments
-  return loadIssueTypes().then(function(issueTypes) {
-
-    return issueTypes;
-  });
-};
-
-var issueTypePromise;
-function loadIssueTypes() {
-  if (!issueTypePromise) {
-    issueTypePromise = $http({
-      method: 'GET',
-      url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issueTypes'
-  }).then(function(res) {
-    return res.data;
-  });
-}
-
-return issueTypePromise;
-}
-
 return service;
 });
 
@@ -155,16 +134,16 @@ return service;
 
   var IssuesListCtrl = this;
 
-  IssuesService.getAllIssuesTypes().then(function(issueTypes)
-  {
-    $scope.issueTypes = issueTypes;
-  });
-
   IssuesService.getAllIssues().then(function(issues) {
     $scope.issues = issues;
     $scope.$broadcast('dataloaded');
   });
 
+  $scope.$on('updateTags', function (e, data) {
+     console.log(data.tags);
+    $scope.issues.tags = data.tags;
+
+    });
 // Goes up in page - used in issues template when clicking to issues details
 $scope.goUp = function () {
                 $location.hash('up');
@@ -238,24 +217,21 @@ $scope.goUp = function () {
     // add to the controller the function called from the html to update tags when
     // on-tag-added or on-tag-removed
     detailsCtrl.updateTag = function() {
-        // $scope.issue.zags not beeing updated here only after ajax call ??
+        // $scope.issue.tags not beeing updated here only after ajax call ??
         updateTags($scope.issue.tags, $scope.issue.id)
         .then(function(){
-          updateTags($scope.issue.tags, $scope.issue.id).then(function(response){
-          console.log("Antes" + response);
-          console.log("Antes2" + response.data);
-          $scope.$emit('updateTags', response.data);
+          updateTags($scope.issue.tags, $scope.issue.id);
         })
+        .then(function(response){
+          console.log(response.data);
+          $rootScope.$broadcast('updateTags', response.data);
         })
-        
         .catch(function () {
           $scope.error ="Error changing issue tags";
         });
     };
 
-  $scope.$on('updateTags', function (e, data) {
-     console.log(data);
-    });
+  
 
 
     /**
