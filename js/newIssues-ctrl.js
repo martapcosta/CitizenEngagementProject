@@ -56,7 +56,7 @@ return service;
 
 
 
-angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, AuthService, $http, $log, $state, $scope) {
+angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, AuthService, $http, $log, $state,$rootScope, $scope) {
   var newIssue = this;
   newIssue.issue = {};
   // init issue location
@@ -81,6 +81,7 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, Aut
       "coordinates": [$scope.position.lng, $scope.position.lat],
       "type": "Point"
     };
+    $log.info(newIssue.issue.location);
   };
 
   newIssue.createNewIssue = function()
@@ -91,10 +92,11 @@ angular.module('app').controller('NewIssueCtrl', function (NewIssuesService, Aut
       url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues',
       data: newIssue.issue
     }).then(function(res) {
+      $rootScope.message = "New issue successfully added!";
       $state.go('home');
     }).catch(function(error) {
-      newIssue.error = "Error while trying to create a new issue";
-      $log.error(newIssue.error);
+      newIssue.error = "Error while trying to create a new issue.";
+      $log.error(error);
     })
   };
 

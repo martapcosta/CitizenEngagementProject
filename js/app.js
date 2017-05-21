@@ -73,5 +73,9 @@
       event.preventDefault();
       $state.go('welcome');
     }
+    if(toState.name !== 'home')
+    {
+      delete $rootScope.message;
+    }
   });
 });

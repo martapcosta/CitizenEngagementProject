@@ -10,6 +10,9 @@
 </head>
 <body>
   <main class="container">
+    <div class="alert alert-success" ng-if="$root.message">
+      {{$root.message}}
+    </div>
     <div ng-controller="IssuesListCtrl as issuelistctrl" class="list-group">
     <div class="col-md-8 col-md-offset-2">
       <div class="row">
