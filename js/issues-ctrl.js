@@ -212,18 +212,24 @@ $scope.goUp = function () {
     // add to the controller the function called from the html to update tags when
     // on-tag-added or on-tag-removed
     detailsCtrl.updateTag = function() {
+        // $scope.issue.zags not beeing updated here only after ajax call ??
         updateTags($scope.issue.tags, $scope.issue.id)
         .then(function(){
-          updateTags($scope.issue.tags, $scope.issue.id)
+          updateTags($scope.issue.tags, $scope.issue.id).then(function(response){
+          console.log("Antes" + response);
+          console.log("Antes2" + response.data);
+          $scope.$emit('updateTags', response.data);
         })
-        .then(function(response){
-          //$scope.$emit('newTags', response.data);
         })
+        
         .catch(function () {
           $scope.error ="Error changing issue tags";
         });
     };
 
+  $scope.$on('updateTags', function (e, data) {
+     console.log(data);
+    });
 
 
     /**
