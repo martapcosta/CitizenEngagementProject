@@ -46,9 +46,9 @@
 	<div class="list-group-item list-group-item-action flex-column row">
 		<div class="col">
 			<h3>Tags</h3>
-			<span class="tag-list btn" ng-repeat="tag in issue.tags" ng-click="deleteTag(tag)">{{tag}}<i class="glyphicon glyphicon-tags"></i></span>
+			<span class="tag-list btn" ng-repeat="tag in issue.tags" >{{tag}}<i class="glyphicon glyphicon-tags"></i></span>
 			<span class="no-tag" ng-if="issue.tags.length < 1">No tag</span>
-			<!--<tags-input ng-model="issue.tags" use-strings="true"></tags-input>-->
+			<tags-input ng-model="issue.tags" on-tag-added="details.updateTag()" on-tag-removed="details.updateTag()" use-strings="true"></tags-input>
 		</div>
 	</div>
 	<button class="btn btn-secondary" ng-click="showCcommentWrapper = true">Show all comments</button>
@@ -77,7 +77,7 @@
 			{{commentsCtrl.error}}
 		</div>
 	</form>
-	<button class="btn btn-primary" ng-click="$dismiss()">
+	<button class="btn btn-primary" ng-click="$dismiss()" ui-sref="issues">
 		Close
 	</button>
 </div>

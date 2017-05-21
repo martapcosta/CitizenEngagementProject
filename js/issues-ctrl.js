@@ -198,32 +198,31 @@ $scope.goUp = function () {
           });
     });
 
-     // function to remove a from a given issue in API
-    function removeTag(tag, issueId) {
+     // function to update tags a from a given issue in API
+    function updateTags(tagsArray, issueId) {
             return $http({
                 method: 'PATCH',
                 data: {
-                    tags: [tag]
+                    tags: tagsArray
                 },
                 url: 'https://masrad-dfa-2017-g.herokuapp.com/api/issues/' + issueId
             });
         };
 
-    // add deleteTag into the $scope
-    // executes removeTag function and then updates the tags and     
-    $scope.deleteTag = function (tag) {
-                removeTag(tag, $scope.issue.id)
-                .then(function (response) {
-                    
-                    $scope.issue.tags = $filter('filter')($scope.issue.tags, function (value) {
-                        return value !== tag;
-                    });
-                })
-                .catch(function () {
-                    $scope.error ="Error removing tag";
-                });
+    // add to the controller the function called from the html to update tags when
+    // on-tag-added or on-tag-removed
+    detailsCtrl.updateTag = function() {
+        updateTags($scope.issue.tags, $scope.issue.id)
+        .then(function(){
+          updateTags($scope.issue.tags, $scope.issue.id)
+        })
+        .then(function(response){
+          //$scope.$emit('newTags', response.data);
+        })
+        .catch(function () {
+          $scope.error ="Error changing issue tags";
+        });
     };
-
 
 
 
