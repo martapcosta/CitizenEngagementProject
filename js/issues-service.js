@@ -2,18 +2,22 @@
 * IssuesService
 */
 angular.module('app').factory('IssuesService', function($http,AuthService,$q) {
-
   var service = {};
 
-
+  /**
+   *  Service to get all issue types
+   */
   service.getAllIssuesTypes = function() {//add page and number of issues as arguments
     return loadIssueTypes().then(function(issueTypes) {
-
       return issueTypes;
     });
   };
 
   var issueTypePromise;
+
+  /**
+   *  Promise that load all issue types from the database
+   */
   function loadIssueTypes() {
     if (!issueTypePromise) {
       issueTypePromise = $http({
@@ -28,16 +32,18 @@ angular.module('app').factory('IssuesService', function($http,AuthService,$q) {
   }
 
   /**
-  * Gets comments from a given issue.
-  */
+   *  Gets comments from a given issue.
+   *  @param {String} issueId
+   */
   service.getComments = function(issueId) {
     return fetchAllIssueComments(issueId).then(function(comments) {
       return comments;
     });
   };
+
   /**
-  * Gets All issues
-  */
+   *   Gets All issues
+   */
   service.getAllIssues = function() {
     return fetchAllIssues().then(function(issues) {
       return issues;
@@ -45,23 +51,32 @@ angular.module('app').factory('IssuesService', function($http,AuthService,$q) {
   };
 
   /**
-  * Gets given issue data
-  */
+   *   Gets given issue data
+   *  @param {String} issueId
+   */
   service.getIssue = function(issueId) {
     return getIssueData(issueId);
   };
 
   /**
-  * Gets given issue data
-  */
+   *  Gets given user data
+   *  @param {String} userId
+   */
   service.getUser = function(userId) {
     return getUserData(userId);
   };
 
+  /**
+   *  Gets given issue type data
+   *  @param {String} idType
+   */
   service.getTypeData = function(idType) {
     return getIssueType(idType);
   };
 
+  /**
+   *  Fetchs all issues from the database through a search method
+   */
   function fetchAllIssues(page, items) {
     page = page || 1; // Start from page 1
     items = items || [];
@@ -88,8 +103,9 @@ angular.module('app').factory('IssuesService', function($http,AuthService,$q) {
 };
 
 /**
-* Get data for a given issue
-*/
+ *  Get data for a given issue
+ *  @param {String} id
+ */
 function getIssueData(id) {
   return $http({
     method: 'GET',
@@ -100,8 +116,8 @@ function getIssueData(id) {
 }
 
 /**
-* Get user data
-*/
+ * Get user data
+ */
 function getUserData(userId) {
   return $http({
     method: 'GET',
@@ -112,8 +128,8 @@ function getUserData(userId) {
 }
 
 /**
-* Get issue type data
-*/
+ * Get issue type data
+ */
 function getIssueType(idType) {
   return $http({
     method: 'GET',
@@ -124,8 +140,8 @@ function getIssueType(idType) {
 }
 
 /**
-* Get issue comments
-*/
+ * Get issue comments
+ */
 function fetchAllIssueComments(issueId,page, items) {
   page = page || 1; // Start from page 1
   items = items || [];

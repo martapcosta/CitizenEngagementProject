@@ -1,4 +1,4 @@
-angular.module('app').controller('NewIssueCtrl', function (IssuesService, AuthService, $http, $log, $state,$rootScope, $scope) {
+angular.module('app').controller('NewIssueCtrl', function (IssuesService, AuthService, $http, $state,$rootScope, $scope) {
   var newIssue = this;
   newIssue.issue = {};
   // init issue location
@@ -11,11 +11,17 @@ angular.module('app').controller('NewIssueCtrl', function (IssuesService, AuthSe
     "type": "Point"
   };
 
+  /**
+   * Gets all issue types through issue service
+   */
   IssuesService.getAllIssuesTypes().then(function(issueTypes)
   {
     newIssue.issueTypes = issueTypes;
   });
 
+  /**
+   * Updates the location of the new issue
+   */
   newIssue.updateLocation = function()
   {
     //newIssue.issue.location = marker;
@@ -23,9 +29,11 @@ angular.module('app').controller('NewIssueCtrl', function (IssuesService, AuthSe
       "coordinates": [$scope.position.lng, $scope.position.lat],
       "type": "Point"
     };
-    $log.info(newIssue.issue.location);
   };
 
+  /**
+   * Creates a new issue using the issue object from ng-model
+   */
   newIssue.createNewIssue = function()
   {
     delete newIssue.error;
@@ -38,10 +46,10 @@ angular.module('app').controller('NewIssueCtrl', function (IssuesService, AuthSe
       $state.go('home');
     }).catch(function(error) {
       newIssue.error = "Error while trying to create a new issue.";
-      $log.error(error);
     })
   };
 
+  // updates location of the new issue on event
   $scope.$on('updateLocation', function () {
     newIssue.updateLocation();
   });

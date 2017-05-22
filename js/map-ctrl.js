@@ -53,6 +53,9 @@ angular.module("app").controller("MapCtrl", function($scope, $rootScope, $geoloc
   }
 });
 
+/**
+ * Gets an address from a marker, using lat and lng
+ */
 function GetAddress(marker) {
   var geocodeService = L.esri.Geocoding.geocodeService();
   var latlng = {lat: parseFloat(marker.lat), lng: parseFloat(marker.lng)};
@@ -63,6 +66,7 @@ function GetAddress(marker) {
   });
 }
 
+// update $scope position and address variables on event
 $scope.$on("leafletDirectiveMarker.dragend", function(event, args){
   $scope.position.lat = args.model.lat;
   $scope.position.lng = args.model.lng;

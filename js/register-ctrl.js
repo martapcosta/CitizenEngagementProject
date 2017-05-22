@@ -1,10 +1,12 @@
-angular.module('app').controller('RegisterCtrl', function RegisterCtrl($http, $log, $state) {
+angular.module('app').controller('RegisterCtrl', function RegisterCtrl($http, $state) {
   var register = this;
   register.user = {};
   // role has citizen by default
   register.user.roles = ["citizen"];
 
-  // Creates an new user
+  /**
+   * Creates a new user through the user object received from ng-model
+   */
   register.createUser = function() {
     delete register.error;
     $http({
@@ -15,7 +17,6 @@ angular.module('app').controller('RegisterCtrl', function RegisterCtrl($http, $l
       $state.go('login');
     }).catch(function(error) {
       register.error = "Error while trying to register you";
-      $log.error(error);
     })
   }
 });

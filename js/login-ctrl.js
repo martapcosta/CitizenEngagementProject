@@ -1,8 +1,13 @@
+/**
+* Controller to manage the login 
+*/
 angular.module('app').controller('LoginCtrl', function LoginCtrl(AuthService, $http, $log, $state) {
   var login = this;
-
   login.user = {};
 
+  /**
+   *  Login the returned user from ng-model
+   */
   login.connect = function connect() {
     delete login.error;
 
