@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>CE Yverdon-les-Bains</title>
+  <title>CE Yverdon-les-Bains</title>
 
-    <!-- Third-party styles -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/ng-tags-input.bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/ng-tags-input.min.css">
-    <link rel="stylesheet" href="assets/leaflet/leaflet.css">
-    <!-- Application styles -->
-    <link rel="stylesheet" href="css/app.css">
-    <!-- Theme CSS -->
-    <link href="css/creative.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.4/dist/esri-leaflet-geocoder.css">
+  <!-- Third-party styles -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/ng-tags-input.bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/ng-tags-input.min.css">
+  <link rel="stylesheet" href="assets/leaflet/leaflet.css">
+  <!-- Application styles -->
+  <link rel="stylesheet" href="css/app.css">
+  <!-- Theme CSS -->
+  <link href="css/creative.css" rel="stylesheet">
+  <!-- Custom Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.4/dist/esri-leaflet-geocoder.css">
 </head>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -39,41 +39,41 @@
           <li><a ui-sref="newissue" class="glyphicon glyphicon-map-marker" title="Report an Issue - Go to map"></a></li>
           <li><a ui-sref="issues" title="See all reported issues">All Issues</a></li>
         </ul>
-         <button class="btn btn-danger navbar-btn" ng-controller="LogoutCtrl as logout" ng-click="logout.disconnect()"> Log out</button>
+        <button class="btn btn-danger navbar-btn" ng-controller="LogoutCtrl as logout" ng-click="logout.disconnect()"> Log out</button>
       </div>
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
 </nav>
 <body ng-app='app'>
-<main class="container">
+  <main class="container">
     <div ui-view />
-</main>
-    <!-- Script inclusions -->
-    <script type="text/javascript" src="assets/leaflet/leaflet.js"></script>
-    <script type="text/javascript" src="assets/js/lodash.min.js"></script>
-    <script type="text/javascript" src="assets/js/moment.min.js"></script>
-    <script type="text/javascript" src="assets/js/angular.min.js"></script>
-    <script type="text/javascript" src="assets/js/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
-    <script type="text/javascript" src="assets/js/angular-leaflet-directive.min.js">  </script>
-    <script src="//cdn.jsdelivr.net/angular.bootstrap/0.11.0/ui-bootstrap-tpls.js"></script>
-    <script type="text/javascript" src="assets/js/ngGeolocation.min.js"></script>
-    <script type="text/javascript" src="assets/js/ng-tags-input.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/auth-interceptor.js"></script>
-    <script type="text/javascript" src="js/auth-service.js"></script>
-    <script type="text/javascript" src="js/comments-ctrl.js"></script>
-    <script type="text/javascript" src="js/issue-details-ctrl.js"></script>
-    <script type="text/javascript" src="js/issues-ctrl.js"></script>
-    <script type="text/javascript" src="js/issues-service.js"></script>
-    <script type="text/javascript" src="js/login-ctrl.js"></script>
-    <script type="text/javascript" src="js/logout-ctrl.js"></script>
-    <script type="text/javascript" src="js/map-ctrl.js"></script>
-    <script type="text/javascript" src="js/navbar-ctrl.js"></script>
-    <script type="text/javascript" src="js/newIssues-ctrl.js"></script>
-    <script type="text/javascript" src="js/register-ctrl.js"></script>
-    <script type="text/javascript" src="js/welcome-ctrl.js"></script>
-    <script src="https://unpkg.com/esri-leaflet@2.0.8"></script>
-    <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.4"></script>
+  </main>
+  <!-- Script inclusions -->
+  <script type="text/javascript" src="assets/leaflet/leaflet.js"></script>
+  <script type="text/javascript" src="assets/js/lodash.min.js"></script>
+  <script type="text/javascript" src="assets/js/moment.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-leaflet-directive.min.js">  </script>
+  <script src="//cdn.jsdelivr.net/angular.bootstrap/0.11.0/ui-bootstrap-tpls.js"></script>
+  <script type="text/javascript" src="assets/js/ngGeolocation.min.js"></script>
+  <script type="text/javascript" src="assets/js/ng-tags-input.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/auth-interceptor.js"></script>
+  <script type="text/javascript" src="js/auth-service.js"></script>
+  <script type="text/javascript" src="js/comments-ctrl.js"></script>
+  <script type="text/javascript" src="js/issue-details-ctrl.js"></script>
+  <script type="text/javascript" src="js/issues-ctrl.js"></script>
+  <script type="text/javascript" src="js/issues-service.js"></script>
+  <script type="text/javascript" src="js/login-ctrl.js"></script>
+  <script type="text/javascript" src="js/logout-ctrl.js"></script>
+  <script type="text/javascript" src="js/map-ctrl.js"></script>
+  <script type="text/javascript" src="js/navbar-ctrl.js"></script>
+  <script type="text/javascript" src="js/newIssues-ctrl.js"></script>
+  <script type="text/javascript" src="js/register-ctrl.js"></script>
+  <script type="text/javascript" src="js/welcome-ctrl.js"></script>
+  <script src="https://unpkg.com/esri-leaflet@2.0.8"></script>
+  <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.4"></script>
 </body>
 </html>
