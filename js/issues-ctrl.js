@@ -23,8 +23,6 @@ angular.module('app').controller('IssuesListCtrl', function($http,$state,IssuesS
 
   // call method get all issues on event
   $scope.$on('updateTags', function (e, data) {
-
-    console.log(data['id']);
     //Marta: not the best way of doing because it calls all issues again
     // but for now I don't have the time to do it better
     //but it updates the view with the updated tags
