@@ -62,7 +62,7 @@ If the provided information is not correct, the user will be informed with a mes
 <a name="main-menu"></a>
 ## 4. Main menu
 
-By clicking the navbrand ![Menu2](doc/screenshots/navbrand.png) the user will be redirected to the Welcome Page
+By clicking the navbrand ![Menu2](doc/screenshots/navbrand.png) the user will be redirected to the [Welcome page](#welcome)
 
 The other options (from the left to right) are:
 
@@ -78,7 +78,10 @@ The other options (from the left to right) are:
 <a name="lastIssues"></a>
 ## 5. Last 10 Issues
 
-In the view the user will be able to see the last 10 reported issues and a map containing all issues
+In this view the user will be able to see the last 10 reported issues and a map containing all the reported issues.
+
+The user also can click on an issue an will be redirected to the issue details (all issues view).
+
 ![Last 10 Issues view](doc/screenshots/Last10Issues.png)
 
 <a href="#top">go up</a>
@@ -86,30 +89,61 @@ In the view the user will be able to see the last 10 reported issues and a map c
 <a name="newIssue"></a>
 ## 6. Create a new issue
 
+To create a new issue the user has to chose the option ![new issue](doc/screenshots/iconnewissue.png) in the main menu.
+
+He will be then redirected to the "create new issue" view (image below):
 ![Create new issue view](doc/screenshots/newIssue.png)
+
+To create a new issue:
+
+- drag the icon to the right place (new issue coordinates)
+- on dropping the icon the new adress will be indicated below the map
+- chose an issue type from the given options
+- write a description of the issue
+- add tags (optional)
+- click the button "Save Issue"
+
 <a href="#top">go up</a>
 
 <a name="allIssues"></a>
 ## 7. All Issues
 
-![All Issues view](doc/screenshots/allIssues.png)
+To see all reported issues, the user has to chose the option "All Issues" of the main menu.
+
+Here he will see all reported issues in the map and also a list of all issues (description and tags visible).
+
+![All Issues view](doc/screenshots/AllIssues.png)
+
+From here the user can:
+
+- see an issue details (by clicking that issue) [Issue Details](#issueDet)
+- filter by issue type [Filter by issue type](#issueType)
+- filter by word [Filter by text](#text)
 
 <a href="#top">go up</a>
 
 <a name="issueType"></a>
 ### 7.1 Filter by Issue Type
 
+To filter by issue type the user just have to chose the issue type of the given options:
+
 ![Issue Type Filter Option](doc/screenshots/filterIssueType.png)
+
 <a href="#top">go up</a>
 
 <a name="text"></a>
 ### 7.2 Filter by text
 
+To filter by word the user just have type the searched word:
+
 ![Text Filter Option](doc/screenshots/FilterText.png)
+
 <a href="#top">go up</a>
 
 <a name="issueDet"></a>
 ### 7.3 How to see the details of an issue
+
+By clicking on a item of the issues list the user will be redirected to the details information of that issue:
 
 ![How to go to issue details](doc/screenshots/chosedetails.png)
 
@@ -118,20 +152,39 @@ In the view the user will be able to see the last 10 reported issues and a map c
 <a name="issueDetails"></a>
 ## 8. Issue details modal
 
+After chosing ans clicking the issue on the issues list the more details of that issue will appear in a dialog (modal) view:
+
 ![Details1](doc/screenshots/details1.png)
+
+In the details dialog of an issue the user can see:
+
+- creation date
+- last modification date
+- issue status
+- issue type
+- description
+- existing tags (here he can remove or add tags [Tags](#tags))
+- existing commments by clicking the button "show all comments" (here he can make a new comment(s) [Comments](#comments))
 
 <a href="#top">go up</a>
 
 <a name="comments"></a>
 ### 8.1 Issue comments
 
+At the below of the details dialog the user can see all comments and also he has the possibility of adding a new comment that will be automatically updated in the view.
+To do that he just have to type his comment in the available text area and then click the button "Send Comment":
+
 ![Comments1](doc/screenshots/comments1.png)
-![Comments2](doc/screenshots/comments2.png)
 
 <a href="#top">go up</a>
 
 <a name="tags"></a>
 ### 8.2 Issue tags
+
+In the details dialog of an issue the user can add or remove tags:
+
+- to remove a tag he just has to click on the tag the he wants to delete (blue buttons)
+- to add a new tag he just have to type the new tag and the tap enter or tab keyboard keys
 
 ![Removing and adding tags](doc/screenshots/tags.png)
 
