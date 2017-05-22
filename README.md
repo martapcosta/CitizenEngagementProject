@@ -26,6 +26,8 @@ In this README you'll find the functionalities of this application.
 <a name="welcome"></a>
 ## 1. Welcome Page
 
+When the application is first started, the user is redirected to the Welcome Page where he gets to know the concept of the application and also how it works (at the bottom of the page the user can register /login):
+
 ![Welcome Page1](doc/screenshots/welcome1.png)
 
 ![Welcome Page2](doc/screenshots/welcome2.png)
@@ -37,12 +39,21 @@ In this README you'll find the functionalities of this application.
 <a name="register"></a>
 ## 2. Register
 
+At the bottom of the Welcome page the user can find the option to Register or Login (if already registered)
+
+If the user choses the register option by clicking the button "Register", he's asked to entre his first and last names, a username ans a password and then click on the register button of this screen:
+
 ![Register Screen](doc/screenshots/register.png)
+
+The user registration is successful if he's redirected to the Login page (see below)
 
 <a href="#top">go up</a>
 
 <a name="login"></a>
 ## 3. Login
+
+In the login view the user is asked to enter his username and password to be identified in the application. 
+If the provided information is not correct, the user will be informed with a message, otherwise the user will be connected to the application and redirected to the home page of the application.
 
 ![Login Screen](doc/screenshots/login.png)
 
@@ -51,16 +62,23 @@ In this README you'll find the functionalities of this application.
 <a name="main-menu"></a>
 ## 4. Main menu
 
-![Menu2](doc/screenshots/navbrand.png)
+By clicking the navbrand ![Menu2](doc/screenshots/navbrand.png) the user will be redirected to the Welcome Page
+
+The other options (from the left to right) are:
+
+- Home page : with a list of the last reported issues
+- Option to create a new issue
+- Option to see all issues
+- logout option
 
 ![Menu1](doc/screenshots/main-menu1.png)
-
 
 <a href="#top">go up</a>
 
 <a name="lastIssues"></a>
 ## 5. Last 10 Issues
 
+In the view the user will be able to see the last 10 reported issues and a map containing all issues
 ![Last 10 Issues view](doc/screenshots/Last10Issues.png)
 
 <a href="#top">go up</a>
