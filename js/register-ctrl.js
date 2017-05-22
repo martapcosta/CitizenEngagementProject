@@ -1,4 +1,4 @@
-﻿angular.module('app').controller('RegisterCtrl', function RegisterCtrl($http, $log, $state) {
+angular.module('app').controller('RegisterCtrl', function RegisterCtrl($http, $log, $state) {
   var register = this;
   register.user = {};
   // role has citizen by default

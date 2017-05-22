@@ -1,22 +1,22 @@
 /**
- * Welcome controller
- */
+* Welcome controller
+*/
 angular.module('app').controller('WelcomePageController', function($anchorScroll,$location,$scope,AuthService) {
   var welcomePageCtrl = this;
 
 
-welcomePageCtrl.isActive = function() {
-    
+  welcomePageCtrl.isActive = function() {
+
     return (!AuthService.token);
-};
+  };
 
-$scope.linkTo = function(id) { 
-	$location.url(id);    
-};
+  $scope.linkTo = function(id) {
+    $location.url(id);
+  };
 
-$scope.scrollTo = function(id) {
-      $location.hash(id);
-      $anchorScroll();
-   }
+  $scope.scrollTo = function(id) {
+    $location.hash(id);
+    $anchorScroll();
+  }
 
 });

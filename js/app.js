@@ -1,20 +1,19 @@
 /**
- * Main angular module with all the dependencies
- */
- angular.module('app', [
+* Main angular module with all the dependencies
+*/
+angular.module('app', [
   'ui.router',
   'angular-storage',
   'ngGeolocation',
   'leaflet-directive',
   'ngTagsInput',
   'ui.bootstrap'
-  ]);
+]);
 
-
- /**
- * This is the router of the application, where the different states are declared and nested.
- */
- angular.module('app').config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+/**
+* This is the router of the application, where the different states are declared and nested.
+*/
+angular.module('app').config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
   $stateProvider.state('login', {
     url: '/login',
     templateUrl: './templates/login.html',
@@ -67,7 +66,7 @@
   $httpProvider.interceptors.push('AuthInterceptor');
 })
 
- angular.module('app').run(function (AuthService, $rootScope, $state) {
+angular.module('app').run(function (AuthService, $rootScope, $state) {
   $rootScope.$on('$stateChangeStart', function (event, toState) {
     if (!AuthService.token && toState.name !== 'login' && toState.name !== 'register' && toState.name !== 'welcome') {
       event.preventDefault();
