@@ -4,9 +4,7 @@
 angular.module('app').controller('WelcomePageController', function($anchorScroll,$location,$scope,AuthService) {
   var welcomePageCtrl = this;
 
-
   welcomePageCtrl.isActive = function() {
-
     return (!AuthService.token);
   };
 

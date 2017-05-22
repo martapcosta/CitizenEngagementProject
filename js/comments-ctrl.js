@@ -1,6 +1,6 @@
 /**
-* Controller managing issues comments
-*/
+ * Controller managing issues comments
+ */
 angular.module('app').controller('CommentsCtrl', function ($http,$scope) {
 
   var commentsCtrl = this;
@@ -8,8 +8,12 @@ angular.module('app').controller('CommentsCtrl', function ($http,$scope) {
   $scope.comm = null;
   delete commentsCtrl.error;
 
-
-  // function to post a comment in API
+  /**
+   *  Posts the received comment object to the database
+   *  having in consideration the specified issue
+   *  @param {Object} comment
+   *  @param {String} issueId
+   */
   function addComment (comment, issueId){
     return $http({
       method: 'POST',
@@ -21,8 +25,9 @@ angular.module('app').controller('CommentsCtrl', function ($http,$scope) {
   };
 
   /**
-  * Adds a comment
-  */
+   *  Gets the comment object through $scope
+   * and posts it through addComment method
+   */
   commentsCtrl.newComment = function () {
     addComment($scope.comm, $scope.issue.id)
     .then(function (response) {

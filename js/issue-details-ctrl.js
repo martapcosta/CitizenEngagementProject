@@ -7,7 +7,10 @@ angular.module('app').controller('DetailsCtrl', function (IssuesService,$statePa
 
   var issueId = $stateParams.id;
 
-
+  /**
+   *  Gets an issue object and it's comments through the specied issue id
+   *  @param {String} issueId
+   */
   IssuesService.getIssue(issueId).then(function(issue) {
 
     var issueTypeHref = issue['issueTypeHref'];
@@ -49,7 +52,11 @@ angular.module('app').controller('DetailsCtrl', function (IssuesService,$statePa
     });
   });
 
-  // function to update tags a from a given issue in API
+  /**
+   *  Updates the tags array of a specified issue from the database
+   *  @param {Array} tagsArray
+   *  @param {String} issueId
+   */
   function updateTags(tagsArray, issueId) {
     return $http({
       method: 'PATCH',
@@ -60,8 +67,12 @@ angular.module('app').controller('DetailsCtrl', function (IssuesService,$statePa
     });
   };
 
-  // add to the controller the function called from the html to update tags when
-  // on-tag-added or on-tag-removed
+  /**
+   *  Add to the controller the function called from the html to update tags when
+   *  on-tag-added or on-tag-removed
+   *  @param {Object} comment
+   *  @param {String} issueId
+   */
   detailsCtrl.updateTag = function() {
     // $scope.issue.tags not beeing updated here only after ajax call ??
     updateTags($scope.issue.tags, $scope.issue.id)
